@@ -4,17 +4,46 @@
 <head>
   <title>create_poll.ejs</title>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <h1>create_poll.ejs</h1>
+  <main>
+    <section id="new-poll">
+      <form id="new-poll-form" name="new-poll-form">
+        <div class="new-poll-inner-div">
+          <section id="title-container">
+            <input id="new-poll-title" placeholder="TITLE" name="title">
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="description-container">
+            <textarea id="new-poll-description" placeholder="DESCRIPTION" name="description"></textarea>
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="choices-container">
+            <!-- Section starts off with two choices as default - jQuery will add more if desired by creator. -->
+            <div class="single-choice-container">
+              <input class="new-poll-choice" placeholder="CHOICE" name="choice-one">
+            </div>
+            <div class="single-choice-container">
+              <input class="new-poll-choice" placeholder="CHOICE" name="choice-two">
+            </div>
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="button-container">
+            <button id="create-poll">CREATE POLL</button>
+          </section>
+        </div>
+      </form>
+    </section>
+  </main>
 </body>
 
 </html>
