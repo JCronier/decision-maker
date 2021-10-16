@@ -35,7 +35,7 @@ $(() => {
 
   // Submit user inputted title, description, choices, and email
   $("#new-poll-form").on("submit", function(event) {
-    // event.preventDefault();   <-- Uncomment this and console.log statements to see values
+    // event.preventDefault();   // <-- Uncomment this and console.log statements to see values
 
     const title = $("#new-poll-title").val();
     // console.log(title);
@@ -50,5 +50,29 @@ $(() => {
 
     const email = $("#new-poll-email").val();
     // console.log(email);
+
+    const nameRequired = $("#name-option-checkbox").is(":checked");
+    // console.log(nameRequired);
+
+    const newPollData = {
+      title,
+      description,
+      choices,
+      email,
+      nameRequired
+    };
+    // console.log(newPollData);
+
+    $.ajax({
+      url: "/api/creators/create",
+      type: "POST",
+      data: newPollData,
+      success: function(data) {
+        // TODO
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
   });
 });
