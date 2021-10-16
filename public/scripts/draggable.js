@@ -1,34 +1,31 @@
-//draggable choice rankings
-// const ui = require('jquery-ui-dist/jquery-ui');
+// const { Pool } = require('pg');
 
-// $(document).ready(function() {
-  $(function(){
-    $( "#rank-sorting" ).sortable({
-      revert: true
-    });
+// const pool = new Pool({
+//   database_url = process.env.DATABASE_URL
+// });
 
-    $(".draggabletoo").draggable({
-      // axis: "y",
-      // cursor: "move"
-      // cursorAt: { top: 56, left: 56 }
-      connectToSortable: "#rank-sorting",
-      helper: "clone",
-      revert: "invalid"
+$(document).ready(function() {
+
+  const getChoices = function(id) {
+    return pool
+    .query(`
+    SELECT * FROM choices
+    WHERE poll_id=$1;
+    `, [id])
+    .then((result) => {
+      console.log(result.rows[0])
+    })
+  }
+
+  $(function() {
+    $('#sortable-8').sortable({
+      update: function(event, ui) {
+          var productOrder = $(this).sortable('toArray').toString();
+          var productOrder2 = $(this).sortable('toArray');
+          $("#sortable-9").text (productOrder);
+          console.log(productOrder2)
+      }
     });
+  });
 
 });
-
-
-
-// });
-$( function() {
-  $( "#sortable" ).sortable({
-    revert: true
-  });
-  $( "#draggable" ).draggable({
-    connectToSortable: "#sortable",
-    helper: "clone",
-    revert: "invalid"
-  });
-  $( "ul, li" ).disableSelection();
-} );
