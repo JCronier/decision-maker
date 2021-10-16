@@ -10,7 +10,7 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-  router.get("/", (req, res) => {
+  router.get("/create", (req, res) => {
     res.render("create_poll");
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
