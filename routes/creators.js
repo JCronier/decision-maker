@@ -14,7 +14,7 @@ module.exports = (db) => {
   });
 
   router.post("/create", (req, res) => {
-    console.log(req.body);
+    // console.log("IN TERMINAL", req.body);
 
     // Data to construct a poll row
     const title = req.body.title;
@@ -31,7 +31,7 @@ module.exports = (db) => {
     const pollValues = [title, description, email, nameRequired];
 
     // Data to construct a choice row(s)
-    let poll_id;
+    let pollId;
     const choices = req.body.choices;
 
 
@@ -44,17 +44,32 @@ module.exports = (db) => {
     db
       .query(pollQueryString, pollValues)
       .then(result => {
-        poll_id = result.rows[0].id;
+        pollId = result.rows[0].id;
 
         for (const choice of choices) {
-          const choiceValues = [poll_id, choice];
+          const choiceValues = [pollId, choice];
 
           db
             .query(choiceQueryString, choiceValues)
             .catch(error => console.log(error.message));
         }
       })
+      .then(() => {
+        res.send({ title, description, email, nameRequired });
+      })
       .catch(error => console.log(error.message));
+  });
+
+  router.get("/confirmation", (req, res) => {
+    // http://localhost:8080/api/creators/confirmation?title=sdfsdfsdfsdfsd&description=&email=&nameRequired=false
+    // console.log(req.query);
+    // {
+    //   title: 'A',
+    //   description: 'sdf',
+    //   email: '1!!!@gmail.com',
+    //   nameRequired: 'false'
+    // }
+    res.render("create_confirmation", req.query);
   });
 
   return router;

@@ -34,7 +34,7 @@ $(() => {
 
 
   // Submit user inputted title, description, choices, and email
-  $("#new-poll-form").on("submit", function(event) {
+  $("#create-poll-button").on("click", function(event) {
     // event.preventDefault();   // <-- Uncomment this and console.log statements to see values
 
     const title = $("#new-poll-title").val();
@@ -67,8 +67,19 @@ $(() => {
       url: "/api/creators/create",
       type: "POST",
       data: newPollData,
-      success: function(data) {
-        // TODO
+      success: function(dataToPassToCreateConfirmation) {
+        const title = dataToPassToCreateConfirmation.title;
+        const description = dataToPassToCreateConfirmation.description;
+        const email = dataToPassToCreateConfirmation.email;
+        const nameRequired = dataToPassToCreateConfirmation.nameRequired;
+
+        let confirmationQueryStringURL = '/api/creators/confirmation?';
+        confirmationQueryStringURL += `title=${title}&`;
+        confirmationQueryStringURL += `description=${description}&`;
+        confirmationQueryStringURL += `email=${email}&`;
+        confirmationQueryStringURL += `nameRequired=${nameRequired}`;
+
+        window.location.href = confirmationQueryStringURL;
       },
       error: function(error) {
         console.log(error);
