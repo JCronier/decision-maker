@@ -33,6 +33,7 @@ module.exports = (db) => {
     // Data to construct a choice row(s)
     let pollId;
     const choices = req.body.choices;
+    console.log(choices);
 
 
     const choiceQueryString = `
@@ -47,11 +48,13 @@ module.exports = (db) => {
         pollId = result.rows[0].id;
 
         for (const choice of choices) {
-          const choiceValues = [pollId, choice];
+          if (choice !== '') {
+            const choiceValues = [pollId, choice];
 
-          db
-            .query(choiceQueryString, choiceValues)
-            .catch(error => console.log(error.message));
+            db
+              .query(choiceQueryString, choiceValues)
+              .catch(error => console.log(error.message));
+          }
         }
       })
       .then(() => {
