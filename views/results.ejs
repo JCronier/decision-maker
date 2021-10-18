@@ -38,8 +38,10 @@
           <div style="background-color: red;height: <%= height %>px;width: <%= barWidth %>px"></div>
           <% } %>
       </div>
-      <div class="graph-yaxis">
-
+      <div class="graph-xaxis">
+        <% for (const choice of poll) { %>
+          <span><%= choice.choice %></span>
+        <% } %>
       </div>
     </div>
 

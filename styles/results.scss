@@ -11,6 +11,8 @@
     flex-direction: column;
     .graph-xaxis {
       height: 1.5em;
+      display: flex;
+      justify-content: space-around;
     }
     .graph-data-body {
       height: 100%;
