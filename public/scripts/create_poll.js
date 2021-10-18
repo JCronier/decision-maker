@@ -72,12 +72,14 @@ $(() => {
         const description = dataToPassToCreateConfirmation.description;
         const email = dataToPassToCreateConfirmation.email;
         const nameRequired = dataToPassToCreateConfirmation.nameRequired;
+        const pollId = dataToPassToCreateConfirmation.pollId;
 
         let confirmationQueryStringURL = '/api/creators/confirmation?';
         confirmationQueryStringURL += `title=${title}&`;
         confirmationQueryStringURL += `description=${description}&`;
         confirmationQueryStringURL += `email=${email}&`;
-        confirmationQueryStringURL += `nameRequired=${nameRequired}`;
+        confirmationQueryStringURL += `nameRequired=${nameRequired}&`;
+        confirmationQueryStringURL += `pollId=${pollId}`;
 
         window.location.href = confirmationQueryStringURL;
       },

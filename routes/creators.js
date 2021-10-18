@@ -55,7 +55,7 @@ module.exports = (db) => {
         }
       })
       .then(() => {
-        res.send({ title, description, email, nameRequired });
+        res.send({ title, description, email, nameRequired, pollId });
       })
       .catch(error => console.log(error.message));
   });
