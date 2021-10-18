@@ -1,8 +1,7 @@
 /*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
+ * All routes for users creating polls are defined here
+ * Since this file is loaded in server.js into api/creators,
+ *   these routes are mounted onto /creators
  */
 
 const express = require('express');
