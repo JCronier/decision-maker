@@ -1,9 +1,10 @@
 module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
-    console.log(req.params.id);
     db.getResults(req.params.id)
       .then(result => {
-        const templateVars = { poll: result };
+        const barWidth = 400 / 2 / result.length;
+        const barHeight = 10;
+        const templateVars = { poll: result, barWidth, barHeight };
         res.render("results", templateVars);
       })
       .catch(e => res.send(e));
