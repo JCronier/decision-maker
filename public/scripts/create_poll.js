@@ -2,7 +2,6 @@ $(() => {
   // Keeps track of current number of choices
   let choiceCounter = 2;
 
-
   // Add a choice input field when + button is clicked
   const addChoice = function() {
     // Construct <input> within <div>
