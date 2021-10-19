@@ -9,7 +9,12 @@ const { render } = require('sass');
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get("/:pollId", (req, res) => {
+  // NO QUERY PARAM
+  // router.get("/poll/:pollId", (req, res) => {
+  //   res.render("temp_submit_poll");
+  // });
+
+  router.get("/poll", (req, res) => {
     res.render("temp_submit_poll");
   });
 

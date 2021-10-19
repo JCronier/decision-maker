@@ -71,5 +71,23 @@ module.exports = (db) => {
     res.render("create_confirmation", req.query);
   });
 
+  // NO QUERY PARAM
+  // router.get("/admin/:pollId", (req, res) => {
+  //   res.render("admin_page");
+  // });
+
+  router.get("/admin", (req, res) => {
+    res.render("admin_page");
+  });
+
+  // NO QUERY PARAM
+  // router.get("/admin/result/:pollId", (req, res) => {
+  //   res.render("temp_result");
+  // });
+
+  router.get("/admin/result", (req, res) => {
+    res.render("temp_result");
+  });
+
   return router;
 };
