@@ -9,44 +9,28 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/results.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/draggable.js"></script>
+  <script type="text/javascript" src="/scripts/displayBarChart.js"></script>
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- chart.css-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
 </head>
 
 <body>
-
-  <div style="height: 800px;"><%= poll[0].poll %>
-    <ul>
-      <% for (const choice of poll) { %>
-      <li ><%= choice.choice %>, <%= choice.points %></li>
-      <% } %>
-    </ul>
-  </div>
-
-  <div class="graph">
-    <div class="graph-yaxis">
-
-    </div>
-    <div class="graph-data">
-      <div class="graph-data-body">
-        <% for (const choice of poll) { %>
-          <% const height = barHeight * Number(choice.points); %>
-          <div style="background-color: red;height: <%= height %>px;width: <%= barWidth %>px"></div>
-          <% } %>
-      </div>
-      <div class="graph-xaxis">
-        <% for (const choice of poll) { %>
-          <span><%= choice.choice %></span>
-        <% } %>
-      </div>
-    </div>
-
-  </div>
-
+  <header class="nav-bar">
+    <%- include('partials/_nav-bar') %>
+  </header>
+  <h2>And the winner is...</h2>
+  <form>
+    <button id="reveal" type="button">Reveal Results</button>
+  </form>
 </body>
 
 </html>

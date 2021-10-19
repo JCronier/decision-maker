@@ -1,13 +1,14 @@
 module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
+    if (req.query.reveal !== 'true'){
+      return res.render("results");
+    }
+
     db.getResults(req.params.id)
       .then(result => {
-        const barWidth = 400 / 2 / result.length;
-        const barHeight = 10;
-        const templateVars = { poll: result, barWidth, barHeight };
-        res.render("results", templateVars);
+        res.json(result);
       })
-      .catch(e => res.send(e));
+      .catch(e => console.log(e));
   });
 
   router.post("/", (req, res) => {
