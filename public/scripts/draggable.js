@@ -18,13 +18,13 @@ $(document).ready(function() {
     return appendstring
   }
 
-  $.ajax({
-    url: "/choices",
-    method: "GET"
-  })
-    .then ((result) => {
-      console.log(result);
-    });
+  // $.ajax({
+  //   url: "/choices",
+  //   method: "GET"
+  // })
+  //   .then ((result) => {
+  //     console.log(result);
+  //   });
 
   // $.ajax({
   //   url: "/tweets",
@@ -62,14 +62,14 @@ $(document).ready(function() {
     };
     console.log(submitObj)
 
-    $.ajax({
-      url: `/${poll_url}/submit`,
-      method: "POST"
-    })
-      .then((result) =>
-      console.log(result)
-      //redirect user to a "succesful post" page
-      )
+    // $.ajax({
+    //   url: `/${poll_url}/submit`,
+    //   method: "POST"
+    // })
+    //   .then((result) =>
+    //   console.log(result)
+    //   //redirect user to a "succesful post" page
+    //   )
     return submitObj;
   });
 });
