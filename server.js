@@ -1,4 +1,4 @@
-const database = require('./db/database');
+const database = require('./db/database.js');
 const resultsRoutes = require('./routes/resultsRoutes');
 
 // Web server config
