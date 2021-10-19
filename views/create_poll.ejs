@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>create_poll.ejs</title>
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/create_poll.js"></script>
+</head>
+
+<body>
+  BODY START
+  <header>HEADER</header>
+
+  <main>
+    MAIN START
+    <section id="new-poll">
+      <form id="new-poll-form" name="new-poll-form">
+        <div class="new-poll-inner-div">
+          <section id="title-container">
+            <input id="new-poll-title" placeholder="TITLE" name="title">
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="description-container">
+            <textarea id="new-poll-description" placeholder="DESCRIPTION" name="description"></textarea>
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="choices-container">
+            <!-- Section starts off with two choices as default - jQuery will add more if desired by creator. -->
+            <div class="single-choice-container">
+              <input class="new-poll-choice" placeholder="CHOICE" name="choice-1">
+            </div>
+            <div class="single-choice-container">
+              <input class="new-poll-choice" placeholder="CHOICE" name="choice-2">
+            </div>
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="add-choice-container">
+            <button id="add-choice-button" type="button">+</button>
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="email-container">
+            <input id="new-poll-email" type="email" placeholder="EMAIL">
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="name-option-container">
+            <label for="name-option-checkbox">Do you want your participants to include their name?</label>
+            <input id="name-option-checkbox" type="checkbox" name="name-option-checkbox">
+          </section>
+        </div>
+
+        <div class="new-poll-inner-div">
+          <section id="button-container">
+            <button id="create-poll-button" type="button">CREATE POLL</button>
+          </section>
+        </div>
+      </form>
+    </section>
+    MAIN END
+  </main>
+
+  <footer>FOOTER</footer>
+  BODY END
+</body>
+
+</html>

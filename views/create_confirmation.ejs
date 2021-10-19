@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>create_poll.ejs</title>
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/create_confirmation.js"></script>
+</head>
+
+<body>
+  BODY START
+  <header>HEADER</header>
+  <main>
+    MAIN START
+    <section id="main-details">
+      <div>
+        <section id="title-container">
+          <%= title %> -- TITLE
+        </section>
+      </div>
+
+      <div>
+        <section id="description-container">
+          <%= description %> -- DESCRIPTION
+        </section>
+      </div>
+
+      <div>
+        <section id="email-container">
+          <%= email %> -- EMAIL
+        </section>
+      </div>
+
+      <div>
+        <section id="name-option-container">
+          <% if (nameRequired==='true' ) { %>
+            true -- NAME REQUIRED
+            <% } else { %>
+              false -- NAME REQURED
+              <% } %>
+        </section>
+      </div>
+    </section>
+  </main>
+  MAIN END
+  <footer>FOOTER</footer>
+  BODY END
+</body>
+
+</html>
