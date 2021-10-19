@@ -17,24 +17,6 @@ module.exports = (db) => {
   router.get("/poll", (req, res) => {
     console.log(req.params);
     res.render("submission");
-
-    // const queryString = `
-    // SELECT id, name
-    // FROM choices
-    // WHERE poll_id = $1
-    // RETURNING *;
-    // `;
-
-    // const values = [pollId];
-
-    // db
-    //   .query(queryString, values)
-    //   .then((result) => {
-    //     const choices = result.rows;
-
-    //     res.send({ choices });
-    //   })
-    //   .catch(error => console.log(error.message));
   });
 
 
