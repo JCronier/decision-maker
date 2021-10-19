@@ -1,5 +1,7 @@
-$(document).ready(function() {
+const e = require("express");
 
+$(document).ready(function() {
+  //creates a draggable UI element that auto-sorts the choices
   $(function() {
     $('#sortable').sortable({
       update: function(event, ui) {
@@ -10,22 +12,24 @@ $(document).ready(function() {
     });
   });
 
+  //sets a variable for the poll's ID to use in various functions below
+  const urlParams = new URLSearchParams(window.location.search);
+  const pollId = urlParams.get('pollId');
+
+  //a template for creating the list of choices
   const choicetemplate = (result) => {
     const appendstring = `
     <div class="draggable-rank" id ="${result.id}">${result.name}</div>
     `;
     return appendstring
   }
+  //an html element for an input field for the user to input their name
   const nameinput = `
     <label for="email">Name *required</label>
-    <input type="name" id="name-field" name="name" placeholder="name" style="width: 300px; margin: 1em">
-  `
+    <input type="name" id="name-field" name="name" placeholder="name" required style="width: 300px; margin: 1em">
+  `;
 
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const pollId = urlParams.get('pollId');
-  console.log("ALEXTOMMY", pollId);
-
+  //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameinput)
@@ -35,6 +39,7 @@ $(document).ready(function() {
     }
   }
 
+  //a request for populating the choices list corresponding to the poll id
   $.ajax({
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
@@ -47,6 +52,8 @@ $(document).ready(function() {
     }
   });
 
+
+  //a function that governs the submit for the rankings form
   $("form").on("submit", function(event) {
     //prevents the default form post request, replacing it with ajax requests
     event.preventDefault();
@@ -63,14 +70,21 @@ $(document).ready(function() {
       rankedObj[rank] = id;
     }
 
-    const nameID = $('#name-field');
+    //checks name field for a submitted name
+    if ($('#name-field')) {
+      const nameID = $('#name-field').val();
+    } else {
+      const nameID = 'anonymous'
+    }
+
+    //constructs an object to submit as the user's vote
     const submitObj = {
       'name': nameID,
       'poll_id': pollId,
       'rankings': rankedObj
     };
-    console.log(submitObj)
 
+    //sends that object to the url
     $.ajax({
       url: `/results`,
       method: "POST",
@@ -80,6 +94,5 @@ $(document).ready(function() {
         console.log(result)
         //redirect user to a "succesful post" page
       )
-    return submitObj;
   });
 });
