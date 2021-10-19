@@ -1,16 +1,5 @@
 $(document).ready(function() {
 
-  const getChoices = function(id) {
-    return pool
-    .query(`
-    SELECT * FROM choices
-    WHERE poll_id=$1;
-    `, [id])
-    .then((result) => {
-      console.log(result.rows[0])
-    })
-  }
-
   $(function() {
     $('#sortable-8').sortable({
       update: function(event, ui) {
@@ -28,6 +17,22 @@ $(document).ready(function() {
     `;
     return appendstring
   }
+
+  $.ajax({
+    url: "/choices",
+    method: "GET"
+  })
+    .then ((result) => {
+      console.log(result);
+    });
+
+  // $.ajax({
+  //   url: "/tweets",
+  //   method: "GET"
+  // })
+  //   .then((result) => {
+  //     renderTweets(result);
+  //   });
 
   $("form").on("submit", function (event) {
     //prevents the default form post request, replacing it with ajax requests
@@ -56,6 +61,15 @@ $(document).ready(function() {
       'rankings' : rankedObj
     };
     console.log(submitObj)
+
+    $.ajax({
+      url: `/${poll_url}/submit`,
+      method: "POST"
+    })
+      .then((result) =>
+      console.log(result)
+      //redirect user to a "succesful post" page
+      )
     return submitObj;
   });
 });
