@@ -19,7 +19,7 @@ const getResults = function(pollId) {
       console.log(err);
     });
 };
-exports.getResults = getResults;
+//exports.getResults = getResults;
 
 const addResults = function(results) {
   console.log(Object.keys(results.results).length);
@@ -44,8 +44,13 @@ const addResults = function(results) {
     })
     .catch(err => console.log(err));
 };
-exports.addResults = addResults;
+//exports.addResults = addResults;
 
 const bordaCount = function (entryCount, rank) {
   return entryCount + 1 - rank;
+};
+
+module.exports = {
+  addResults,
+  getResults
 };
