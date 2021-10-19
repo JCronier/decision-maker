@@ -15,8 +15,47 @@ module.exports = (db) => {
   // });
 
   router.get("/poll", (req, res) => {
-    // console.log("/poll", req.query);
-    res.render("temp_submit_poll");
+    console.log(req.params);
+    res.render("submission");
+
+    // const queryString = `
+    // SELECT id, name
+    // FROM choices
+    // WHERE poll_id = $1
+    // RETURNING *;
+    // `;
+
+    // const values = [pollId];
+
+    // db
+    //   .query(queryString, values)
+    //   .then((result) => {
+    //     const choices = result.rows;
+
+    //     res.send({ choices });
+    //   })
+    //   .catch(error => console.log(error.message));
+  });
+
+
+  router.get("/choices/:pollId", (req, res) => {
+    console.log("GETTING CHOICES FOR:", req.params.pollId);
+
+    const queryString = `
+    SELECT id, name
+    FROM choices
+    WHERE poll_id = $1;
+    `;
+
+    const values = [req.params.pollId];
+
+    db
+      .query(queryString, values)
+      .then((result) => {
+        console.log(result.rows);
+        res.send(result.rows);
+      })
+      .catch(error => console.log(error.message));
   });
 
   return router;
