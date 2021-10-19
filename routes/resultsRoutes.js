@@ -6,6 +6,7 @@ module.exports = (router, db) => {
         const barHeight = 10;
         const templateVars = { poll: result, barWidth, barHeight };
         res.render("results", templateVars);
+        console.log("success")
       })
       .catch(e => res.send(e));
   });

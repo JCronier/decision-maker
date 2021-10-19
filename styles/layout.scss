@@ -5,4 +5,15 @@ html {
   margin: 0;
 }
 
+html {
+  box-sizing: border-box;
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
