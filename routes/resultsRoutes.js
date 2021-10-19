@@ -1,6 +1,6 @@
 module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
-    if (req.query.reveal !== 'true'){
+    if (!req.query.reveal){
       return res.render("results");
     }
 

@@ -1,7 +1,9 @@
 const displayBarChart = function(poll) {
     const $body = $('body');
+    const barSpacing = 20;
+    console.log(barSpacing)
     const barChart = $(`
-        <table class="charts-css bar show-heading show-labels show-primary-axis show-5-secondary-axes data-spacing-20" id="barchart">
+        <table class="charts-css bar show-heading show-labels show-primary-axis show-5-secondary-axes data-spacing-${barSpacing}" id="barchart">
           <caption></caption>
           <tbody>
 
