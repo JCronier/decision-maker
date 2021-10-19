@@ -15,6 +15,7 @@ module.exports = (db) => {
   // });
 
   router.get("/poll", (req, res) => {
+    // console.log("/poll", req.query);
     res.render("temp_submit_poll");
   });
 

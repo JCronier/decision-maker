@@ -22,7 +22,7 @@ module.exports = (db) => {
     const nameRequired = req.body.nameRequired;
 
     const pollQueryString = `
-    INSERT INTO polls (title, description, admin_email, name_submission_require)
+    INSERT INTO polls (title, description, email, require_name)
     VALUES ($1, $2, $3, $4)
     RETURNING *;
     `;
@@ -35,7 +35,7 @@ module.exports = (db) => {
     console.log("choices", choices);
 
     const choiceQueryString = `
-    INSERT INTO choices (poll_id, choice_name)
+    INSERT INTO choices (poll_id, name)
     VALUES ($1, $2);
     `;
 
@@ -77,6 +77,7 @@ module.exports = (db) => {
   // });
 
   router.get("/admin", (req, res) => {
+    // console.log("/admin", req.query);
     res.render("admin_page");
   });
 
@@ -86,6 +87,7 @@ module.exports = (db) => {
   // });
 
   router.get("/admin/result", (req, res) => {
+    // console.log("/admin/result", req.query);
     res.render("temp_result");
   });
 
