@@ -87,7 +87,6 @@ $(document).ready(function() {
     }
 
     const nameID = 'literally me';
-    const pollId = 1;
     const submitObj = {
       'name': nameID,
       'poll_id': pollId,
@@ -96,8 +95,9 @@ $(document).ready(function() {
     console.log(submitObj)
 
     $.ajax({
-      url: `/${poll_url}/submit`,
-      method: "POST"
+      url: `/results`,
+      method: "POST",
+      data: { submitObj }
     })
       .then((result) =>
         console.log(result)
