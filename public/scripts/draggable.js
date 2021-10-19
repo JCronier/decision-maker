@@ -20,7 +20,6 @@ $(document).ready(function() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const pollId = urlParams.get('pollId');
-  console.log("ALEXTOMMY", pollId);
 
   // const queryString = `
   //   SELECT id, name
@@ -44,7 +43,7 @@ $(document).ready(function() {
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      console.log('the result of my query is: ', result);
+      //console.log('the result of my query is: ', result);
       renderChoices(result);
     },
     error: function(error) {
@@ -92,17 +91,16 @@ $(document).ready(function() {
       'poll_id': pollId,
       'rankings': rankedObj
     };
-    console.log(submitObj)
 
     $.ajax({
       url: `/results`,
       method: "POST",
-      data: { submitObj }
+      data: submitObj,
+      success: (result) => {
+        window.location.pathname = `/results/${result}`;
+      },
+      error: (err) => console.log(err)
     })
-      .then((result) =>
-        console.log(result)
-        //redirect user to a "succesful post" page
-      )
-    return submitObj;
+    //return submitObj;
   });
 });
