@@ -24,7 +24,7 @@ exports.getResults = getResults;
 const addResults = function(results) {
   console.log(Object.keys(results.results).length);
   let query = `
-  INSERT INTO results (poll_id, choice_id, points)
+  INSERT INTO results (poll_id, name, choice_id, points)
   VALUES
   `;
   const pollId = results.poll_id;
@@ -33,12 +33,12 @@ const addResults = function(results) {
   const valueArr = [];
 
   for (const choice in results.results) {
-    valueArr.push(`(${pollId}, ${choice}, ${bordaCount(entryCount, results.results[choice])})`);
+    valueArr.push(`(${pollId}, $1, ${choice}, ${bordaCount(entryCount, results.results[choice])})`);
   }
   query += ' ' + valueArr.join(', ') + ' RETURNING poll_id';
 
   return db
-    .query(query)
+    .query(query, [name])
     .then(result => {
       return result.rows[0].poll_id;
     })

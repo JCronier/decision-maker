@@ -1,14 +1,13 @@
+const { findMax } = require("../public/scripts/displayBarChart");
+
 module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
     db.getResults(req.params.id)
       .then(result => {
-        const barWidth = 400 / 2 / result.length;
-        const barHeight = 10;
-        const templateVars = { poll: result, barWidth, barHeight };
+        const templateVars = { poll: result, maxPoints: findMax(result) };
         res.render("results", templateVars);
-        console.log("success")
       })
-      .catch(e => res.send(e));
+      .catch(e => console.log(e));
   });
 
   router.post("/", (req, res) => {
