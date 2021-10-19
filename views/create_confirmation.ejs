@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>create_confirmation.ejs</title>
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/create_confirmation.js"></script>
+</head>
+
+<body>
+  BODY START
+  <header>HEADER</header>
+  <main>
+    MAIN START
+    <section id="main-details">
+      <div>
+        <section id="title-container">
+          <%= title %> -- TITLE
+        </section>
+      </div>
+
+      <div>
+        <section id="description-container">
+          <%= description %> -- DESCRIPTION
+        </section>
+      </div>
+
+      <div>
+        <section id="email-container">
+          <%= email %> -- EMAIL
+        </section>
+      </div>
+
+      <div>
+        <section id="name-option-container">
+          <% if (nameRequired==='true' ) { %>
+            true -- NAME REQUIRED
+            <% } else { %>
+              false -- NAME REQURED
+              <% } %>
+        </section>
+      </div>
+
+      <div>
+        <section id="link-container">
+          <button id="submittor-link" type="click">Share this link with your participants.</button>
+          <button id="admin-link" type="click">This is a link for you which contains a link to the live
+            results.</button>
+      </div>
+    </section>
+  </main>
+  MAIN END
+  <footer>FOOTER</footer>
+  BODY END
+</body>
+
+</html>

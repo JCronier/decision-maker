@@ -42,6 +42,13 @@ app.use('/results', resultsRouter);
 // Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
 // app.use("/api/widgets", widgetsRoutes(db));
+const creatorsRoutes = require("./routes/creators");
+const submittorsRoutes = require("./routes/submittors");
+
+// Mount all resource routes
+// Note: Feel free to replace the example routes below with your own
+app.use("/api/creators", creatorsRoutes(database));
+app.use("/api/submittors", submittorsRoutes(database));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

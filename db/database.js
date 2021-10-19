@@ -46,6 +46,6 @@ const addResults = function(results) {
 };
 exports.addResults = addResults;
 
-const bordaCount = function (entryCount, rank) {
+const bordaCount = function(entryCount, rank) {
   return entryCount + 1 - rank;
 };
