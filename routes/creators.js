@@ -4,16 +4,16 @@
  *   these routes are mounted onto /creators
  */
 
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// const router = express.Router();
 
-module.exports = (db) => {
+module.exports = (router, db) => {
   router.get("/create", (req, res) => {
     res.render("create_poll");
   });
 
   router.post("/create", (req, res) => {
-    // console.log("IN TERMINAL", req.body);
+    // // console.log("IN TERMINAL", req.body);
 
     // Data to construct a poll row
     const title = req.body.title;
@@ -21,42 +21,43 @@ module.exports = (db) => {
     const email = req.body.email;
     const nameRequired = req.body.nameRequired;
 
-    const pollQueryString = `
-    INSERT INTO polls (title, description, email, require_name)
-    VALUES ($1, $2, $3, $4)
-    RETURNING *;
-    `;
+    // const pollQueryString = `
+    // INSERT INTO polls (title, description, email, require_name)
+    // VALUES ($1, $2, $3, $4)
+    // RETURNING *;
+    // `;
 
     const pollValues = [title, description, email, nameRequired];
 
     // Data to construct a choice row(s)
-    let pollId;
     const choices = req.body.choices.filter(choice => choice !== "");
-    console.log("choices", choices);
+    // console.log("choices", choices);
 
-    const choiceQueryString = `
-    INSERT INTO choices (poll_id, name)
-    VALUES ($1, $2);
-    `;
+    // const choiceQueryString = `
+    // INSERT INTO choices (poll_id, name)
+    // VALUES ($1, $2);
+    // `;
 
     // Perform queries to insert into polls and choices
-    db
-      .query(pollQueryString, pollValues)
-      .then(result => {
-        pollId = result.rows[0].id;
+    // db
+    //   .query(pollQueryString, pollValues)
+    //   .then(result => {
+    //     pollId = result.rows[0].id;
 
-        for (const choice of choices) {
-          const choiceValues = [pollId, choice];
+    //     for (const choice of choices) {
+    //       const choiceValues = [pollId, choice];
 
-          db
-            .query(choiceQueryString, choiceValues)
-            .catch(error => console.log(error.message));
-        }
-      })
-      .then(() => {
-        res.send({ title, description, email, nameRequired, pollId });
-      })
-      .catch(error => console.log(error.message));
+    //       db
+    //         .query(choiceQueryString, choiceValues)
+    //         .catch(error => console.log(error.message));
+    //     }
+    //   })
+    //   .then(() => {
+    //     res.send({ title, description, email, nameRequired, pollId });
+    //   })
+    //   .catch(error => console.log(error.message));
+
+    db.populatePollAndChoices(pollValues, choices, res);
   });
 
   router.get("/confirmation", (req, res) => {

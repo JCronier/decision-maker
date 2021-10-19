@@ -21,23 +21,25 @@ module.exports = (db) => {
 
 
   router.get("/choices/:pollId", (req, res) => {
-    console.log("GETTING CHOICES FOR:", req.params.pollId);
+    // console.log("GETTING CHOICES FOR:", req.params.pollId);
 
-    const queryString = `
-    SELECT id, name
-    FROM choices
-    WHERE poll_id = $1;
-    `;
+    // const queryString = `
+    // SELECT id, name
+    // FROM choices
+    // WHERE poll_id = $1;
+    // `;
 
     const values = [req.params.pollId];
 
-    db
-      .query(queryString, values)
-      .then((result) => {
-        console.log(result.rows);
-        res.send(result.rows);
-      })
-      .catch(error => console.log(error.message));
+    // db
+    //   .query(queryString, values)
+    //   .then((result) => {
+    //     console.log(result.rows);
+    //     res.send(result.rows);
+    //   })
+    //   .catch(error => console.log(error.message));
+
+    db.getChoices(values, res);
   });
 
   return router;

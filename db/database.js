@@ -49,3 +49,62 @@ exports.addResults = addResults;
 const bordaCount = function(entryCount, rank) {
   return entryCount + 1 - rank;
 };
+
+// Tommy - called when user clicks button to create a poll on create_poll.ejs
+const populatePollAndChoices = function(pollValues, choices, postResponse) {
+  let pollId;
+
+  const pollQueryString = `
+  INSERT INTO polls (title, description, email, require_name)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *;
+  `;
+
+  const choiceQueryString = `
+  INSERT INTO choices (poll_id, name)
+  VALUES ($1, $2);
+  `;
+
+  db
+    .query(pollQueryString, pollValues)
+    .then(result => {
+      pollId = result.rows[0].id;
+
+      for (const choice of choices) {
+        const choiceValues = [pollId, choice];
+
+        db
+          .query(choiceQueryString, choiceValues)
+          .catch(error => console.log(error.message));
+      }
+    })
+    .then(() => {
+      const title = pollValues[0];
+      const description = pollValues[1];
+      const email = pollValues[2];
+      const nameRequired = pollValues[3];
+
+      postResponse.send({ title, description, email, nameRequired, pollId });
+    })
+    .catch(error => console.log(error.message));
+}
+exports.populatePollAndChoices = populatePollAndChoices;
+
+// Tommy - called when user clicks submitter link on create_confirmation.ejs
+const getChoices = function(values, getResponse) {
+  const queryString = `
+  SELECT id, name
+  FROM choices
+  WHERE poll_id = $1;
+  `;
+
+  db
+    .query(queryString, values)
+    .then((result) => {
+      // console.log(result.rows);
+      getResponse.send(result.rows);
+    })
+    .catch(error => console.log(error.message));
+};
+
+exports.getChoices = getChoices;
