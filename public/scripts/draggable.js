@@ -1,5 +1,3 @@
-const e = require("express");
-
 $(document).ready(function() {
   //creates a draggable UI element that auto-sorts the choices
   $(function() {
@@ -29,26 +27,7 @@ $(document).ready(function() {
     <input type="name" id="name-field" name="name" placeholder="name" required style="width: 300px; margin: 1em">
   `;
 
-<<<<<<< HEAD
   //a function that adds the choices, and if required the name field.
-=======
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const pollId = urlParams.get('pollId');
-
-  // const queryString = `
-  //   SELECT id, name
-  //   FROM choices
-  //   WHERE poll_id = $1
-  //   RETURNING *;
-  //   `, pollId;
-
-  // [
-  //   { id: 5, name: 'Tree Bark Chips' },
-  //   { id: 6, name: 'Apple Ramen Pie' }
-  // ]
-
->>>>>>> feature/results
   const renderChoices = function(choicerows) {
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameinput)
