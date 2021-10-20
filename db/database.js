@@ -16,9 +16,6 @@ const getResults = function(pollId) {
     .then(result => {
       return result.rows;
     })
-    .catch(err => {
-      console.log(err);
-    });
 };
 exports.getResults = getResults;
 
@@ -42,7 +39,6 @@ const addResults = function(results) {
     .then(result => {
       return result.rows[0].poll_id;
     })
-    .catch(err => console.log(err));
 };
 exports.addResults = addResults;
 
@@ -131,9 +127,6 @@ const addUser = function(userId, pollId) {
     VALUES ($1, $2);
   `
   const values = [pollId, userId];
-
-  console.log("add user");
-
   return db
     .query(query, values);
 };
@@ -145,9 +138,6 @@ const checkUser = function(pollId, userId) {
     WHERE poll_id = $1
     AND user_id = $2;
   `;
-
-  console.log("check user")
-
   return db
     .query(query, [pollId, userId])
     .then(result => {

@@ -9,8 +9,7 @@
 #barchart tbody td {
   transform-origin: left;
   animation: revealing-bars 4s linear;
-  border-radius: 10%;
-  background-image: url('../public/images/pumpkin.png');
+  border-radius: 5%;
 }
 
 @keyframes revealing-bars {
@@ -18,3 +17,43 @@
   15% { transform: scaleX( 1 ); }
 }
 
+.pumpkin{
+	background: #f68632;
+	border: 0.4em solid #a14907;
+	border-radius: 70%/110%;
+	position: relative;
+	box-shadow: inset 0 0px 20px #a14907, 0 0 30px -4px red;
+	z-index: 1;
+}
+
+.pumpkin .surface{
+	position: absolute;
+	bottom: -0.4em;
+	left: 4em;
+	border-radius: 70%/110%;
+	border-bottom: 0.5em solid #a14907;
+	border-top: 0.5em solid #a14907;
+}
+
+.pumpkin .surface:after{
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -0.4em;
+	left: -2.5em;
+	border-radius: 70%/110%;
+	border-bottom: .05em solid #a14907;
+	border-top: 0.5em solid #a14907;
+}
+
+.pumpkin .stem{
+	background: #517f54;
+	position: absolute;
+	left: calc(7.5em - 0.625em);
+	top: -2.7em;
+	-webkit-transform: rotate(5deg);
+	transform: rotate(5deg);
+	border-radius: 30% 20% 70% 10%;
+	z-index: -1;
+	box-shadow: inset 0 0px 10px #29412b;
+}

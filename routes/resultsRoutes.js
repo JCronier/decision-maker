@@ -4,7 +4,6 @@ module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
     db.checkUser(req.params.id, req.session.user_id)
       .then((result) => {
-        console.log(result);
         if (result.length === 0) {
           return res.redirect("/api/creators/create");
         }
@@ -16,7 +15,6 @@ module.exports = (router, db) => {
         .then(result => {
           res.json(result);
         })
-        .catch(e => console.log(e));
       });
 
 

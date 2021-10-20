@@ -1,7 +1,5 @@
 const displayBarChart = function(poll) {
     const $body = $('body');
-    const barSpacing = Math.round(400 / (poll.length * poll.length));
-    console.log(barSpacing)
     const barChart = $(`
         <table class="charts-css bar show-heading show-labels show-primary-axis data-spacing-${20}" id="barchart">
           <caption></caption>
@@ -34,7 +32,7 @@ const createRow = function(choice, maxPoints) {
   return $(`
   <tr>
     <th scope="row"> ${choice.choice} </th>
-    <td style="--size: calc( ${choice.points}  / ${maxPoints} )">${choice.points}</td>
+    <td class"pumpkin" style="--size: calc( ${choice.points}  / ${maxPoints} )">${choice.points}</td>
   </tr>`);
 };
 
@@ -48,11 +46,9 @@ $('document').ready(() => {
     const $button = $('#reveal');
     $.get(window.location.href, {reveal: true})
       .then(result => {
-        console.log(result);
         $button.remove();
         displayBarChart(result);
       })
-      .catch(e => console.log(e));
   })
 
 });
