@@ -67,8 +67,6 @@ $(() => {
       type: "POST",
       data: newPollData,
       success: function(dataToPassToCreateConfirmation) {
-        console.log('create_poll.js 70');
-
         const title = dataToPassToCreateConfirmation.title;
         const description = dataToPassToCreateConfirmation.description;
         const email = dataToPassToCreateConfirmation.email;
