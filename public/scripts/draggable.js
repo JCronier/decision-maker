@@ -68,11 +68,14 @@ $(document).ready(function() {
       rankedObj[rank] = id;
     }
 
-    //checks name field for a submitted name
+    //declare a nameID variable
+    const nameID = '';
+
+    //checks name field for a submitted name then changes nameID to match
     if ($('#name-field')) {
-      const nameID = $('#name-field').val();
+      nameID = $('#name-field').val();
     } else {
-      const nameID = 'anonymous'
+      nameID = 'anonymous';
     }
 
     //constructs an object to submit as the user's vote
