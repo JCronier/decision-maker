@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -49,6 +50,11 @@ const creatorsRouter = express.Router();
 app.use("/api/creators", creatorsRoutes(creatorsRouter, database));
 app.use("/api/submittors", submittorsRoutes(database));
 // Note: mount other resources here, using the same pattern above
+
+app.use(cookieSession({
+  name: "decision",
+  keys: ["key1", "key2"]
+}));
 
 // Home page
 // Warning: avoid creating more routes in this file!
