@@ -7,6 +7,8 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -14,7 +16,13 @@ const morgan = require("morgan");
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieSession({
+  name: "session",
+  keys: ["key1", "key2"]
+}));
 
 app.use(
   "/styles",
@@ -59,5 +67,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Decision Maker listening on port ${PORT}`);
 });

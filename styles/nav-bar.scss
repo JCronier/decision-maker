@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'spooky-sphere';
+  src: url("../fonts/spooky-sphere.otf") format("opentype");
+}
+
 .nav-bar {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   position: absolute;
   top: 0;
-  background-color: purple;
+  background-color: transparent;
+  font-family: 'spooky-sphere';
 }
