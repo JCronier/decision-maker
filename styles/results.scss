@@ -3,15 +3,18 @@
   max-width: 400px;
   top: 100px;
   margin: 0 auto;
-  background-color: beige;
+  background-color: transparent;
 }
 
 #barchart tbody td {
   transform-origin: left;
   animation: revealing-bars 4s linear;
+  border-radius: 10%;
+  background-image: url('../public/images/pumpkin.png');
 }
 
 @keyframes revealing-bars {
   0%  { transform: scaleX( 0 ); }
   15% { transform: scaleX( 1 ); }
 }
+

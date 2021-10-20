@@ -3,7 +3,7 @@ const displayBarChart = function(poll) {
     const barSpacing = Math.round(400 / (poll.length * poll.length));
     console.log(barSpacing)
     const barChart = $(`
-        <table class="charts-css bar show-heading show-labels show-primary-axis show-5-secondary-axes data-spacing-${20}" id="barchart">
+        <table class="charts-css bar show-heading show-labels show-primary-axis data-spacing-${20}" id="barchart">
           <caption></caption>
           <tbody>
 
