@@ -4,8 +4,9 @@ module.exports = (router, db) => {
   router.get("/:id", (req, res) => {
     db.checkUser(req.params.id, req.session.user_id)
       .then((result) => {
+        console.log(result);
         if (result.length === 0) {
-          return res.send("hold on buckaroo");
+          return res.redirect("/api/creators/create");
         }
         if (!req.query.reveal){
           return res.render("results");
@@ -24,19 +25,16 @@ module.exports = (router, db) => {
 
   router.post("/", (req, res) => {
     const resultsObj = req.body;
-    console.log(req.session);
 
-    const userId = generateRandomString();
-    console.log(userId);
+    const userId = req.session.user_id || generateRandomString();
+
     db.addUser(userId, resultsObj.poll_id)
       .then(() => {
         req.session.user_id = userId;
-        console.log(userId, "successful user");
       });
 
     db.addResults(resultsObj)
       .then(result => {
-        console.log("add results");
         res.json( result );
       })
   })

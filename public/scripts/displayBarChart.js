@@ -48,6 +48,7 @@ $('document').ready(() => {
     const $button = $('#reveal');
     $.get(window.location.href, {reveal: true})
       .then(result => {
+        console.log(result);
         $button.remove();
         displayBarChart(result);
       })

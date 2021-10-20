@@ -71,7 +71,8 @@ const populatePollAndChoices = function(pollValues, choices, postResponse, postR
     .then(result => {
       pollId = result.rows[0].id;
 
-      const userId = generateRandomString();
+      const userId = postRequest.session.user_id || generateRandomString();
+
 
       addUser(userId, pollId)
       .then(() => {
