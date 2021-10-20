@@ -4,20 +4,16 @@ $(() => {
 
   // Add a choice input field when + button is clicked
   const addChoice = function() {
-    // Construct <input> within <div>
+    // Construct <input> within <section>
     const $input = $("<input>").addClass("new-poll-choice").attr({
       class: "new-poll-choice",
-      placeholder: "CHOICE",
+      placeholder: "Choice",
       name: `choice-${choiceCounter}`
     });
 
-    // Construct <div> within <section>
-    const $div = $("<div>").addClass("single-choice-container");
-    $div.append($input);
-
     // Add to <section>
     const $section = $("#choices-container");
-    $section.append($div);
+    $section.append($input);
   };
 
 
