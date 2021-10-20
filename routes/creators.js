@@ -1,3 +1,9 @@
+// let api_key = 'df579b83370f7cda788351cdc9f1cf60-2bf328a5-2ca8a348';
+// let domain = 'sandbox064164089a7e4a6ab7eb8f52ae951991.mailgun.org';
+// const mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain });
+
+const { mailgun } = require("../api/mailgun");
+
 /*
  * All routes for users creating polls are defined here
  * Since this file is loaded in server.js into api/creators,
@@ -20,7 +26,6 @@ module.exports = (router, db) => {
     const description = req.body.description;
     const email = req.body.email;
     const nameRequired = req.body.nameRequired;
-
     // const pollQueryString = `
     // INSERT INTO polls (title, description, email, require_name)
     // VALUES ($1, $2, $3, $4)
@@ -32,30 +37,6 @@ module.exports = (router, db) => {
     // Data to construct a choice row(s)
     const choices = req.body.choices.filter(choice => choice !== "");
     // console.log("choices", choices);
-
-    // const choiceQueryString = `
-    // INSERT INTO choices (poll_id, name)
-    // VALUES ($1, $2);
-    // `;
-
-    // Perform queries to insert into polls and choices
-    // db
-    //   .query(pollQueryString, pollValues)
-    //   .then(result => {
-    //     pollId = result.rows[0].id;
-
-    //     for (const choice of choices) {
-    //       const choiceValues = [pollId, choice];
-
-    //       db
-    //         .query(choiceQueryString, choiceValues)
-    //         .catch(error => console.log(error.message));
-    //     }
-    //   })
-    //   .then(() => {
-    //     res.send({ title, description, email, nameRequired, pollId });
-    //   })
-    //   .catch(error => console.log(error.message));
 
     db.populatePollAndChoices(pollValues, choices, res);
   });
@@ -69,6 +50,27 @@ module.exports = (router, db) => {
     //   email: '1!!!@gmail.com',
     //   nameRequired: 'false'
     // }
+
+    const pollId = req.query.pollId;
+    const adminLink = `http://localhost:${process.env.PORT || 8080}/api/creators/admin?pollId=${pollId}`;
+    const submittorLink = `http://localhost:${process.env.PORT || 8080}/api/submittors/poll?pollId=${pollId}`;
+
+    // Send email
+    var data = {
+      from: '9/2021 Group 9 <me@samples.mailgun.org>',
+      to: '2021.sept.group9.decision.maker@gmail.com',
+      subject: 'Your poll is ready to be shared.',
+      text: `Administrator Link (contains Result Link): ${adminLink}\nSubmittor Link: ${submittorLink}`,
+    };
+
+    mailgun.messages().send(data, function(error, body) {
+      if (error) {
+        console.log(error);
+      }
+
+      console.log(body);
+    });
+
     res.render("create_confirmation", req.query);
   });
 
