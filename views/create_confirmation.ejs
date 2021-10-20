@@ -13,6 +13,9 @@
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/create_confirmation.css" type="text/css" />
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- External JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
@@ -30,31 +33,56 @@
   <main>
     <section id="main-details">
       <section id="title-container">
-        <%= title %> -- TITLE
+        <h2 id="title"><span id="title-name">
+            <%= title %>
+          </span> poll is ready to share.
+        </h2>
       </section>
+
+      <br>
 
       <section id="description-container">
-        <%= description %> -- DESCRIPTION
+        <h5 id="description">Description</h5>
+        <span id="description-content">
+          <%= description %>
+        </span>
       </section>
+
+      <br>
+      <br>
+      <br>
+
+      <section id="link-container">
+        <h5 id="link">Links</h5>
+        <div>
+          <span>Participant's Link:</span>
+          <button id="submittor-link" type="click">CLICK TO COPY</button>
+        </div>
+        <div>
+          <span>Administrator's
+            Link:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <button id="admin-link" type="click">CLICK TO COPY</button>
+        </div>
+      </section>
+
+      <br>
 
       <section id="email-container">
-        <%= email %> -- EMAIL
+        <span>An email with these links has also been sent to <b>
+            <%= email %>
+          </b>.</span>
       </section>
-
+      <br>
+      <br>
+      <br>
       <section id="name-option-container">
         <% if (nameRequired==='true' ) { %>
-          true -- NAME REQUIRED
+          <i>Participants will be required to provide their name.</i>
           <% } else { %>
-            false -- NAME REQURED
+            <i>Participants will not be required to provide their name.</i>
             <% } %>
       </section>
 
-      <section id="link-container">
-        <button id="submittor-link" type="click">Share this link with your participants.</button>
-        <button id="admin-link" type="click">This is a link for you which contains a link to the live
-          results.</button>
-
-      </section>
   </main>
 
   <br>

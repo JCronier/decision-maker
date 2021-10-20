@@ -1,0 +1,57 @@
+#main-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4em;
+}
+
+#title-name {
+  color: orange;
+}
+
+#description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#link-container div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#email-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eee;
+}
+
+header, footer {
+  background-color: orange;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

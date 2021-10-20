@@ -14,8 +14,8 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-right: 0%;
-  margin-right: 0%;
+  // padding-right: 0%;
+  // margin-right: 0%;
 }
 
 #title-container {
@@ -56,16 +56,22 @@ textarea {
 }
 
 #add-choice-button {
+  background-color: orange;
+  color: white;
   width: 2.5em;
   height: 2.5em;
 }
 
 #remove-choice-button {
+  background-color: orange;
+  color: white;
   width: 2.5em;
   height: 2.5em;
 }
 
 #reset-choices-button {
+  background-color: black;
+  color: white;
   width: 3em;
 }
 
@@ -93,6 +99,8 @@ textarea {
 }
 
 #create-poll-button {
+  background-color: orange;
+  color: white;
   height: 2.5em;
 }
 
