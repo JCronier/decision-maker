@@ -18,8 +18,8 @@ $(document).ready(function() {
     const appendstring = `
     <div class="draggable-rank" id ="${result.id}">${result.name}</div>
     `;
-    return appendstring
-  }
+    return appendstring;
+  };
   //an html element for an input field for the user to input their name
   const nameInput = `
     <label for="email">Name *required</label>
@@ -28,18 +28,18 @@ $(document).ready(function() {
 
   const errorOut = `
   <span>An error has occured, please make sure you recieved the right link to our page.</span>
-  `
+  `;
 
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
 
     if (choicerows[0].require_name) {
-      $('#ranking-form').prepend(nameInput)
+      $('#ranking-form').prepend(nameInput);
     }
     for (const choice of choicerows) {
-      $('#sortable').append(choicetemplate(choice))
+      $('#sortable').append(choicetemplate(choice));
     }
-  }
+  };
 
   //a request for populating the choices list corresponding to the poll id
   $.ajax({
@@ -48,7 +48,7 @@ $(document).ready(function() {
     success: function(result) {
       console.log('the result of my query is: ', result);
       if (result[0] === undefined) {
-        $('#ranking-form').append(errorOut)
+        $('#ranking-form').append(errorOut);
       }
       renderChoices(result);
     },
@@ -69,9 +69,9 @@ $(document).ready(function() {
     const element = document.getElementById('sortable');
 
     //appends to an object the choice and corresponding rank
-    for (i = 0; i < element.childElementCount; i++) {
+    for (const i = 0; i < element.childElementCount; i++) {
       const id = $(`.draggable-rank`).eq(i).attr("id");
-      const rank = i + 1
+      const rank = i + 1;
       rankedObj[rank] = id;
     }
 
@@ -96,6 +96,6 @@ $(document).ready(function() {
         window.location.pathname = `/results/${result}`;
       },
       error: (err) => console.log(err)
-    })
+    });
   });
 });
