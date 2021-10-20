@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  //creates a draggable UI element that auto-sorts the choices
   $(function() {
     $('#sortable').sortable({
       update: function(event, ui) {
@@ -10,63 +10,48 @@ $(document).ready(function() {
     });
   });
 
+  //sets a variable for the poll's ID to use in various functions below
+  const urlParams = new URLSearchParams(window.location.search);
+  const pollId = urlParams.get('pollId');
+
+  //a template for creating the list of choices
   const choicetemplate = (result) => {
     const appendstring = `
     <div class="draggable-rank" id ="${result.id}">${result.name}</div>
     `;
     return appendstring
   }
+  //an html element for an input field for the user to input their name
+  const nameinput = `
+    <label for="email">Name *required</label>
+    <input type="name" id="name-field" name="name" placeholder="name" required style="width: 300px; margin: 1em">
+  `;
 
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const pollId = urlParams.get('pollId');
-  console.log("ALEXTOMMY", pollId);
-
-  // const queryString = `
-  //   SELECT id, name
-  //   FROM choices
-  //   WHERE poll_id = $1
-  //   RETURNING *;
-  //   `, pollId;
-
-  // [
-  //   { id: 5, name: 'Tree Bark Chips' },
-  //   { id: 6, name: 'Apple Ramen Pie' }
-  // ]
-
+  //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
+    if (choicerows[0].require_name) {
+      $('#ranking-form').prepend(nameinput)
+    }
     for (const choice of choicerows) {
       $('#sortable').append(choicetemplate(choice))
     }
   }
 
+  //a request for populating the choices list corresponding to the poll id
   $.ajax({
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      console.log('the result of my query is: ', result);
+      //console.log('the result of my query is: ', result);
       renderChoices(result);
     },
     error: function(error) {
       console.log(error);
     }
   });
-  // .then((result) => {
-  //   console.log('the result of my query is: ', result);
-  //   renderChoices(result);
-  // });
 
-  // const values = [pollId];
 
-  // db
-  //   .query(queryString, values)
-  //   .then((result) => {
-  //     const choices = result.rows;
-
-  //     res.send({ choices });
-  //   })
-  //   .catch(error => console.log(error.message));
-
+  //a function that governs the submit for the rankings form
   $("form").on("submit", function(event) {
     //prevents the default form post request, replacing it with ajax requests
     event.preventDefault();
@@ -75,34 +60,40 @@ $(document).ready(function() {
     const rankedObj = {};
     //defines the number of choices we're ranking
     const element = document.getElementById('sortable');
-    // console.log(rankings)
-    // console.log(element.childElementCount);
 
     //appends to an object the choice and corresponding rank
     for (i = 0; i < element.childElementCount; i++) {
       const id = $(`.draggable-rank`).eq(i).attr("id");
       const rank = i + 1
       rankedObj[rank] = id;
-      // console.log('id is: ', id, 'rank is: ',rank)
     }
 
-    const nameID = 'literally me';
+    //declare a nameID variable
+    let nameID = '';
+
+    //checks name field for a submitted name then changes nameID to match
+    if ($('#name-field')) {
+      nameID = $('#name-field').val();
+    } else {
+      nameID = 'anonymous';
+    }
+
+    //constructs an object to submit as the user's vote
     const submitObj = {
       'name': nameID,
       'poll_id': pollId,
       'rankings': rankedObj
     };
-    console.log(submitObj)
 
+    //sends that object to the url
     $.ajax({
       url: `/results`,
       method: "POST",
-      data: { submitObj }
+      data: submitObj,
+      success: (result) => {
+        window.location.pathname = `/results/${result}`;
+      },
+      error: (err) => console.log(err)
     })
-      .then((result) =>
-        console.log(result)
-        //redirect user to a "succesful post" page
-      )
-    return submitObj;
   });
 });
