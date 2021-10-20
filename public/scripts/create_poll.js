@@ -38,6 +38,9 @@ $(() => {
     choiceCounter++;
 
     addChoice();
+
+    $([document.documentElement, document.body]).scrollTop($("#add-choice-button").offset().top, 2000);
+    $(`input[name=choice-${choiceCounter}]`).focus();
   });
 
   // Event handler for when - button is clicked
@@ -45,6 +48,8 @@ $(() => {
     event.preventDefault();
 
     removeChoice();
+
+    // $([document.documentElement, document.body]).scrollTop($("#remove-choice-button").offset().top, 2000);
   });
 
 
