@@ -69,7 +69,7 @@ $(document).ready(function() {
     }
 
     //declare a nameID variable
-    const nameID = '';
+    let nameID = '';
 
     //checks name field for a submitted name then changes nameID to match
     if ($('#name-field')) {
