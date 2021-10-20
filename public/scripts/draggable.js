@@ -29,6 +29,8 @@ $(document).ready(function() {
 
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
+    // console.log("draggable.js 32:", choicerows);
+
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameinput)
     }
@@ -42,7 +44,7 @@ $(document).ready(function() {
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      //console.log('the result of my query is: ', result);
+      console.log('the result of my query is: ', result);
       renderChoices(result);
     },
     error: function(error) {

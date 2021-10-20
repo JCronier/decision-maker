@@ -91,16 +91,23 @@ exports.populatePollAndChoices = populatePollAndChoices;
 
 // Tommy - called when user clicks submitter link on create_confirmation.ejs
 const getChoices = function(values, getResponse) {
+  // const queryString = `
+  // SELECT name, choices.id, polls.require_name FROM choices
+  // JOIN polls ON poll_id = polls.id
+  // WHERE poll_id = $1;
+  // `;
+
   const queryString = `
-  SELECT name, choices.id, polls.require_name FROM choices
-  JOIN polls ON poll_id = polls.id
-  WHERE poll_id = $1;
+  SELECT choices.name, choices.id, polls.require_name
+  FROM choices
+  JOIN polls ON choices.poll_id = polls.id
+  WHERE polls.id = $1;
   `;
 
   db
     .query(queryString, values)
     .then((result) => {
-      // console.log(result.rows);
+      console.log(result.rows);
       getResponse.send(result.rows);
     })
     .catch(error => console.log(error.message));

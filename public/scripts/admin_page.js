@@ -7,6 +7,11 @@ $(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const pollId = urlParams.get('pollId');
 
-    window.location.href = "/api/creators/admin/result?pollId=" + pollId;
+    // http://localhost:8080/results/4?pollId=4
+
+    // window.location.href = "/results/" + pollId;
+
+    window.location.href = "/results/" + pollId + "?pollId=" + pollId;
+
   });
 });

@@ -1,9 +1,4 @@
-
-
-
 $(() => {
-
-
 
   $("#submittor-link").on("click", function() {
     // NO QUERY PARAM

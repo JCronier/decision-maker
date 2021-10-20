@@ -58,7 +58,7 @@ module.exports = (router, db) => {
     // Send email
     var data = {
       from: '9/2021 Group 9 <me@samples.mailgun.org>',
-      to: '2021.sept.group9.decision.maker@gmail.com',
+      to: 'tommy.m.son@gmail.com',
       subject: 'Your poll is ready to be shared.',
       text: `Administrator Link (contains Result Link): ${adminLink}\nSubmittor Link: ${submittorLink}`,
     };
