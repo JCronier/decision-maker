@@ -14,8 +14,21 @@ $(() => {
     // Add to <section>
     const $section = $("#choices-container");
     $section.append($input);
+
+    console.log(choiceCounter);
   };
 
+  // Remove a choice input field when - button is clicked
+  const removeChoice = function() {
+    if (choiceCounter > 2) {
+      $(`input[name=choice-${choiceCounter}]`).remove();
+
+      // Decrement current number of choices
+      choiceCounter--;
+    }
+
+    console.log(choiceCounter);
+  };
 
   // Event handler for when + button is clicked
   $("#add-choice-button").on("click", function(event) {
@@ -25,6 +38,13 @@ $(() => {
     choiceCounter++;
 
     addChoice();
+  });
+
+  // Event handler for when - button is clicked
+  $("#remove-choice-button").on("click", function(event) {
+    event.preventDefault();
+
+    removeChoice();
   });
 
 
