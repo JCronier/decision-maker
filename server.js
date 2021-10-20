@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -15,7 +16,13 @@ const cookieSession = require("cookie-session");
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieSession({
+  name: "session",
+  keys: ["key1", "key2"]
+}));
 
 app.use(
   "/styles",
@@ -50,11 +57,6 @@ const creatorsRouter = express.Router();
 app.use("/api/creators", creatorsRoutes(creatorsRouter, database));
 app.use("/api/submittors", submittorsRoutes(database));
 // Note: mount other resources here, using the same pattern above
-
-app.use(cookieSession({
-  name: "decision",
-  keys: ["key1", "key2"]
-}));
 
 // Home page
 // Warning: avoid creating more routes in this file!
