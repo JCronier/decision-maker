@@ -52,6 +52,15 @@ $(() => {
     // $([document.documentElement, document.body]).scrollTop($("#remove-choice-button").offset().top, 2000);
   });
 
+  // Event handler for when RESET button is clicked
+  $("#reset-choices-button").on("click", function(event) {
+    event.preventDefault();
+
+    while (choiceCounter > 2) {
+      removeChoice();
+    }
+  })
+
 
   // Submit user inputted title, description, choices, and email
   $("#create-poll-button").on("click", function(event) {

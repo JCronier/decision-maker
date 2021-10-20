@@ -55,9 +55,18 @@ textarea {
   margin-top: 0.5em;
 }
 
-#add-choice-container button {
+#add-choice-button {
   width: 2.5em;
   height: 2.5em;
+}
+
+#remove-choice-button {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+#reset-choices-button {
+  width: 3em;
 }
 
 #email-container {
