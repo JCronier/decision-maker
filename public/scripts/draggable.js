@@ -3,8 +3,7 @@ $(document).ready(function() {
   $(function() {
     $('#sortable').sortable({
       update: function(event, ui) {
-        var productOrder = $(this).sortable('toArray').toString();
-        var productOrder2 = $(this).sortable('toArray');
+        const productOrder = $(this).sortable('toArray').toString();
         $("#sortable-9").text(productOrder);
       }
     });
@@ -22,17 +21,20 @@ $(document).ready(function() {
     return appendstring
   }
   //an html element for an input field for the user to input their name
-  const nameinput = `
+  const nameInput = `
     <label for="email">Name *required</label>
     <input type="name" id="name-field" name="name" placeholder="name" required style="width: 300px; margin: 1em">
   `;
 
+  const errorOut = `
+  <span>An error has occured, please make sure you recieved the right link to our page.</span>
+  `
+
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
-    // console.log("draggable.js 32:", choicerows);
 
     if (choicerows[0].require_name) {
-      $('#ranking-form').prepend(nameinput)
+      $('#ranking-form').prepend(nameInput)
     }
     for (const choice of choicerows) {
       $('#sortable').append(choicetemplate(choice))
@@ -45,6 +47,9 @@ $(document).ready(function() {
     method: "GET",
     success: function(result) {
       console.log('the result of my query is: ', result);
+      if (result[0] === undefined) {
+        $('#ranking-form').append(errorOut)
+      }
       renderChoices(result);
     },
     error: function(error) {
@@ -71,14 +76,9 @@ $(document).ready(function() {
     }
 
     //declare a nameID variable
-    let nameID = '';
-
     //checks name field for a submitted name then changes nameID to match
-    if ($('#name-field')) {
-      nameID = $('#name-field').val();
-    } else {
-      nameID = 'anonymous';
-    }
+    let nameID = '';
+    ($('#name-field' ? nameID = $('#name-field').val() : nameID = 'anonymous'));
 
     //constructs an object to submit as the user's vote
     const submitObj = {
