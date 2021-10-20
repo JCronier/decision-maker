@@ -1,14 +1,16 @@
 const displayBarChart = function(poll) {
     const $body = $('body');
-    const barSpacing = 20;
+    const barSpacing = Math.round(400 / (poll.length * poll.length));
     console.log(barSpacing)
     const barChart = $(`
-        <table class="charts-css bar show-heading show-labels show-primary-axis show-5-secondary-axes data-spacing-${barSpacing}" id="barchart">
+        <table class="charts-css bar show-heading show-labels show-primary-axis show-5-secondary-axes data-spacing-${20}" id="barchart">
           <caption></caption>
           <tbody>
 
           </tbody>
       </table>`);
+
+      displayWinner(poll[0].choice);
 
       $body.append(barChart);
       const maxPoints = findMax(poll);
@@ -34,6 +36,11 @@ const createRow = function(choice, maxPoints) {
     <th scope="row"> ${choice.choice} </th>
     <td style="--size: calc( ${choice.points}  / ${maxPoints} )">${choice.points}</td>
   </tr>`);
+};
+
+const displayWinner = function(winner) {
+  $('header').after('<h2>And the winner is...</h2>');
+  $('h2').after(`<h1>${winner}</h1>`);
 };
 
 $('document').ready(() => {

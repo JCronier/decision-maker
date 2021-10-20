@@ -29,7 +29,26 @@ $(document).ready(function() {
     <input type="name" id="name-field" name="name" placeholder="name" required style="width: 300px; margin: 1em">
   `;
 
+<<<<<<< HEAD
   //a function that adds the choices, and if required the name field.
+=======
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const pollId = urlParams.get('pollId');
+
+  // const queryString = `
+  //   SELECT id, name
+  //   FROM choices
+  //   WHERE poll_id = $1
+  //   RETURNING *;
+  //   `, pollId;
+
+  // [
+  //   { id: 5, name: 'Tree Bark Chips' },
+  //   { id: 6, name: 'Apple Ramen Pie' }
+  // ]
+
+>>>>>>> feature/results
   const renderChoices = function(choicerows) {
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameinput)
@@ -44,7 +63,7 @@ $(document).ready(function() {
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      console.log('the result of my query is: ', result);
+      //console.log('the result of my query is: ', result);
       renderChoices(result);
     },
     error: function(error) {
@@ -88,11 +107,11 @@ $(document).ready(function() {
     $.ajax({
       url: `/results`,
       method: "POST",
-      data: { submitObj }
+      data: submitObj,
+      success: (result) => {
+        window.location.pathname = `/results/${result}`;
+      },
+      error: (err) => console.log(err)
     })
-      .then((result) =>
-        console.log(result)
-        //redirect user to a "succesful post" page
-      )
   });
 });

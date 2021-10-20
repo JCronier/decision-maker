@@ -19,21 +19,20 @@ const getResults = function(pollId) {
       console.log(err);
     });
 };
-//exports.getResults = getResults;
+exports.getResults = getResults;
 
 const addResults = function(results) {
-  console.log(Object.keys(results.results).length);
   let query = `
   INSERT INTO results (poll_id, name, choice_id, points)
   VALUES
   `;
   const pollId = results.poll_id;
   const name = results.name;
-  const entryCount = Object.keys(results.results).length;
+  const entryCount = results.rankings.length;
   const valueArr = [];
 
-  for (const choice in results.results) {
-    valueArr.push(`(${pollId}, $1, ${choice}, ${bordaCount(entryCount, results.results[choice])})`);
+  for (let i = 0; i < results.rankings.length; i++) {
+    valueArr.push(`(${pollId}, $1, ${results.rankings[i]}, ${bordaCount(entryCount, i + 1)})`);
   }
   query += ' ' + valueArr.join(', ') + ' RETURNING poll_id';
 
@@ -44,7 +43,7 @@ const addResults = function(results) {
     })
     .catch(err => console.log(err));
 };
-//exports.addResults = addResults;
+exports.addResults = addResults;
 
 const bordaCount = function(entryCount, rank) {
   return entryCount + 1 - rank;

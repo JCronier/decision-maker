@@ -12,19 +12,11 @@ module.exports = (router, db) => {
   });
 
   router.post("/", (req, res) => {
-    const resultsObj = {
-      name: 'Jordan',
-      poll_id: 1,
-      results: {
-        1: 2,
-        2: 3,
-        3: 1
-      }
-    };
-                           //req.body;
+    const resultsObj = req.body;
     db.addResults(resultsObj)
       .then(result => {
-        res.redirect(`/results/${result}`);
+        console.log("here",result);
+        res.json( result );
       })
   })
   return router;
