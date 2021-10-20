@@ -69,7 +69,7 @@ $(document).ready(function() {
     const element = document.getElementById('sortable');
 
     //appends to an object the choice and corresponding rank
-    for (const i = 0; i < element.childElementCount; i++) {
+    for (let i = 0; i < element.childElementCount; i++) {
       const id = $(`.draggable-rank`).eq(i).attr("id");
       const rank = i + 1;
       rankedObj[rank] = id;
