@@ -1,0 +1,106 @@
+body {
+  height: 100%;
+  min-width: 455px;
+}
+
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+  background: #007bff;
+}
+
+#new-poll-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 0%;
+  margin-right: 0%;
+}
+
+#title-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 25%;
+}
+
+#description-container {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+textarea {
+  margin-top: 0.5em;
+  height: 10em;
+}
+
+#choices-container {
+  display: flex;
+  flex-direction: column;
+  width: 25%
+}
+
+#add-choice-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: 25%;
+}
+
+.new-poll-choice {
+  margin-top: 0.5em;
+}
+
+#add-choice-container button {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+#email-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  width: 25%;
+}
+
+#name-option-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5em;
+  width: 25%;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  width: 25%;
+}
+
+#create-poll-button {
+  height: 2.5em;
+}
+
+textarea {
+  resize: none;
+  padding-left: 0.5em;
+}
+
+input {
+  padding-left: 0.5em;
+}
+
+header, footer {
+  background-color: orange;
+  text-align: center;
+}
+
+footer {
+  margin-top: 11em;
+}
