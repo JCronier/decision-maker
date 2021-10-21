@@ -114,3 +114,21 @@ const getChoices = function(values, getResponse) {
 };
 
 exports.getChoices = getChoices;
+
+// Tommy
+const getPollName = function(values, getResponse) {
+  const queryString = `
+  SELECT title
+  FROM polls
+  WHERE id = $1;
+  `;
+
+  db
+    .query(queryString, values)
+    .then((result) => {
+      // console.log(result.rows);
+      getResponse.render("admin_page", { pollTitle: result.rows[0].title, pollId: values[0] });
+    })
+    .catch(error => console.log(error.message));
+}
+exports.getPollName = getPollName;

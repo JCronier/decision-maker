@@ -52,7 +52,11 @@ module.exports = (router, db) => {
   });
 
   router.get("/admin", (req, res) => {
-    res.render("admin_page");
+    // res.render("admin_page", req.query);
+
+    const values = [req.query.pollId]
+
+    db.getPollName(values, res);
   });
 
   router.get("/admin/result", (req, res) => {

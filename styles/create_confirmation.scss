@@ -13,6 +13,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
+}
+
+#description-content {
+  // width: 80%;
+  text-align: justify;
 }
 
 #link-container {
