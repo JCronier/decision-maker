@@ -1,7 +1,7 @@
 const displayBarChart = function(poll) {
     const $body = $('body');
     const barChart = $(`
-        <table class="charts-css bar show-heading show-labels show-primary-axis data-spacing-${20}" id="barchart">
+        <table class="charts-css bar show-heading show-labels data-spacing-${20}" id="barchart">
           <caption></caption>
           <tbody>
 
@@ -32,7 +32,7 @@ const createRow = function(choice, maxPoints) {
   return $(`
   <tr>
     <th scope="row"> ${choice.choice} </th>
-    <td class"pumpkin" style="--size: calc( ${choice.points}  / ${maxPoints} )">${choice.points}</td>
+    <td class"pumpkin" style="--size: calc( ${choice.points}  / ${maxPoints} )"> ${choice.points} </td>
   </tr>`);
 };
 

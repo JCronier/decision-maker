@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/results.css" type="text/css" />
   <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/pumpkin.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
@@ -25,6 +26,14 @@
 <body>
     <%- include('partials/_nav-bar') %>
 
+  <div class="pumpkin">
+    <div class="surface"></div>
+    <div class="stem"></div>
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="mouth left"></div>
+    <div class="mouth right"></div>
+  </div>
   <form>
     <button id="reveal" type="button" class="btn btn-outline-light btn-lg">Reveal Results</button>
   </form>
