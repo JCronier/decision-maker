@@ -16,7 +16,7 @@ $(document).ready(function() {
   //a template for creating the list of choices
   const choicetemplate = (result) => {
     const appendstring = `
-    <div class="draggable-rank" id ="${result.id}">${result.name}</div>
+    <div class="draggable-rank" id ="${result.id}"><p>${result.name}</p></div>
     `;
     return appendstring;
   };
@@ -32,12 +32,22 @@ $(document).ready(function() {
   <span>An error has occured, please make sure you recieved the right link to our page.</span>
   `;
 
+  const pollTitle = (result) => {
+    const appendstring = `
+    <h1>${result.title}</h1>
+    `;
+    return appendstring;
+  }
+
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
 
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameInput);
-    }
+    };
+
+    $('.rank-submission').prepend(pollTitle(choicerows[0]));
+
     for (const choice of choicerows) {
       $('#sortable').append(choicetemplate(choice));
     }
