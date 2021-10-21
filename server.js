@@ -63,7 +63,7 @@ app.use("/api/submittors", submittorsRoutes(database));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("create_poll");
 });
 
 app.listen(PORT, () => {

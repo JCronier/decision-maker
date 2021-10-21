@@ -48,7 +48,6 @@ $(document).ready(function() {
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      console.log('the result of my query is: ', result);
       if (result[0] === undefined) {
         $('#ranking-form').append(errorOut);
       }

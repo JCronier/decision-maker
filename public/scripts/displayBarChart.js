@@ -1,6 +1,5 @@
 const displayBarChart = function(poll) {
-  if (poll.length === 0) {
-    displayPoll( poll[0].poll);
+  if (!poll || poll.length === 0) {
     displayError();
     return;
   }
@@ -12,7 +11,7 @@ const displayBarChart = function(poll) {
           </tbody>
       </table>`);
 
-      displayPoll( poll[0].poll);
+      displayPoll(poll[0].poll);
 
       displayWinner(poll[0].choice);
 

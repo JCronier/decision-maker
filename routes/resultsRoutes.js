@@ -16,9 +16,6 @@ module.exports = (router, db) => {
           res.json(result);
         })
       });
-
-
-
   });
 
   router.post("/", (req, res) => {
