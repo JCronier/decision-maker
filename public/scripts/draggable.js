@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#sortable').sortable({
       update: function(event, ui) {
         const productOrder = $(this).sortable('toArray').toString();
-        $("#sortable-9").text(productOrder);
+        // $("#sortable-9").text(productOrder);
       }
     });
   });
@@ -20,6 +20,8 @@ $(document).ready(function() {
     `;
     return appendstring;
   };
+
+  //perhaps create an escape for nameinput that prevents cross site scripting
   //an html element for an input field for the user to input their name
   const nameInput = `
     <label for="email">Name *required</label>

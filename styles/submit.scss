@@ -5,4 +5,45 @@
   padding-top:15px;
   text-align: center;
   border-radius: 10px;
+  color: rgb(37, 37, 37);
+  font-weight:600;
+  align-self: center;
+}
+
+.ui-sortable {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding-left: 0px;
+}
+
+.draggable-rank {
+  background-color: orange;
+}
+
+.rank-submission label {
+  color: #fff;
+  padding-left: 1em;
+}
+
+#name-field {
+  margin-top: 7px !important;
+}
+
+#ranking-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+#ranking-form button {
+  width: 50%;
+  background-color: whitesmoke;
+  align-self: center;
+}
+
+//jank-fix
+.nav-bar {
+  padding-left: 1em;
 }
