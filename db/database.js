@@ -1,3 +1,4 @@
+const { generateRandomString } = require('../public/scripts/generate_string');
 const db = require('./index');
 
 const getResults = function(pollId) {
@@ -15,9 +16,6 @@ const getResults = function(pollId) {
     .then(result => {
       return result.rows;
     })
-    .catch(err => {
-      console.log(err);
-    });
 };
 exports.getResults = getResults;
 
@@ -41,7 +39,6 @@ const addResults = function(results) {
     .then(result => {
       return result.rows[0].poll_id;
     })
-    .catch(err => console.log(err));
 };
 exports.addResults = addResults;
 
@@ -50,7 +47,7 @@ const bordaCount = function(entryCount, rank) {
 };
 
 // Tommy - called when user clicks button to create a poll on create_poll.ejs
-const populatePollAndChoices = function(pollValues, choices, postResponse) {
+const populatePollAndChoices = function(pollValues, choices, postResponse, postRequest) {
   let pollId;
 
   const pollQueryString = `
@@ -61,13 +58,23 @@ const populatePollAndChoices = function(pollValues, choices, postResponse) {
 
   const choiceQueryString = `
   INSERT INTO choices (poll_id, name)
-  VALUES ($1, $2);
+  VALUES ($1, $2)
+  RETURNING poll_id;
   `;
 
   db
     .query(pollQueryString, pollValues)
     .then(result => {
       pollId = result.rows[0].id;
+
+      const userId = postRequest.session.user_id || generateRandomString();
+
+
+      addUser(userId, pollId)
+        .then(() => {
+          postRequest.session.user_id = userId;
+        });
+
 
       for (const choice of choices) {
         const choiceValues = [pollId, choice];
@@ -107,7 +114,6 @@ const getChoices = function(values, getResponse) {
   db
     .query(queryString, values)
     .then((result) => {
-      console.log(result.rows);
       getResponse.send(result.rows);
     })
     .catch(error => console.log(error.message));
@@ -132,3 +138,29 @@ const getPollName = function(values, getResponse) {
     .catch(error => console.log(error.message));
 }
 exports.getPollName = getPollName;
+
+//
+const addUser = function(userId, pollId) {
+  const query = `
+    INSERT INTO users (poll_id, user_id)
+    VALUES ($1, $2);
+  `
+  const values = [pollId, userId];
+  return db
+    .query(query, values);
+};
+exports.addUser = addUser;
+
+const checkUser = function(pollId, userId) {
+  const query = `
+    SELECT * FROM users
+    WHERE poll_id = $1
+    AND user_id = $2;
+  `;
+  return db
+    .query(query, [pollId, userId])
+    .then(result => {
+      return result.rows;
+    })
+};
+exports.checkUser = checkUser;

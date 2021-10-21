@@ -23,7 +23,7 @@ module.exports = (router, db) => {
     // Data to construct a choice row(s)
     const choices = req.body.choices.filter(choice => choice !== "");
 
-    db.populatePollAndChoices(pollValues, choices, res);
+    db.populatePollAndChoices(pollValues, choices, res, req);
   });
 
   router.get("/confirmation", (req, res) => {

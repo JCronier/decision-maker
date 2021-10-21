@@ -5,7 +5,6 @@
  */
 
 const express = require('express');
-const { render } = require('sass');
 const router = express.Router();
 
 module.exports = (db) => {
