@@ -1,4 +1,5 @@
-// See: https://sass-lang.com/
+$orange: #612f04;
+$black: #000000;
 
 body,
 html {
@@ -9,10 +10,28 @@ html {
   box-sizing: border-box;
   body {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, $black, $orange, $black, $orange);
+    animation: gradient 45s ease infinite;
+    background-size: 400% 400%;
+    margin: 100px 0;
   }
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
