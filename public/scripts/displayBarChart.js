@@ -32,7 +32,8 @@ const createRow = function(choice, maxPoints) {
   return $(`
   <tr>
     <th scope="row"> ${choice.choice} </th>
-    <td class"pumpkin" style="--size: calc( ${choice.points}  / ${maxPoints} )"> ${choice.points} </td>
+    <td style="--size: calc( ${choice.points}  / ${maxPoints} )"> ${choice.points}
+    </td>
   </tr>`);
 };
 
