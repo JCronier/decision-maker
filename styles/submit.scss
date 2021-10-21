@@ -19,6 +19,18 @@
 
 .draggable-rank {
   background-color: orange;
+  // transition: 0.3s;
+}
+
+.draggable-rank:hover {
+  background-color: rgb(255, 196, 87);
+}
+
+.draggable-rank p {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .rank-submission label {
@@ -41,6 +53,11 @@
   width: 50%;
   background-color: whitesmoke;
   align-self: center;
+  transition: 0.3s;
+}
+
+#ranking-form button:hover {
+  opacity: 0.8;
 }
 
 //jank-fix
