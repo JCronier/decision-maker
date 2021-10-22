@@ -2,6 +2,102 @@ $(() => {
   // Keeps track of current number of choices
   let choiceCounter = 2;
 
+  // Helper function to validate choice inputs
+  const hasMinimumNumberOfChoices = function(choices) {
+    const minimum = 2;
+    let current = 0;
+
+    for (const choice of choices) {
+      if (choice.trim() !== "") {
+        current++;
+      }
+    }
+
+    if (current < minimum) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const hasTitle = function(title) {
+    if (title.trim() !== "") {
+      return true;
+    }
+
+    return false;
+  }
+
+  const hasEmail = function(email) {
+    if (email.trim() !== "") {
+      return true;
+    }
+
+    return false;
+  }
+
+  const checkEmailFormat = function(email) {
+    const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+
+  const checkFormInputs = function(title, choices, email) {
+    let pass = true;
+
+    if (!hasTitle(title)) {
+      const $titleInput = $("#new-poll-title");
+
+      $titleInput.removeClass("valid-title");
+      $titleInput.addClass("invalid-title");
+      $titleInput.attr("placeholder", "Title Required*")
+
+      pass = false
+    } else {
+      const $titleInput = $("#new-poll-title");
+
+      $titleInput.removeClass("invalid-title");
+      $titleInput.addClass("valid-title");
+      $titleInput.attr("placeholder", "Title")
+    }
+
+    if (!hasMinimumNumberOfChoices(choices)) {
+      $(".choices-error").remove();
+      $("#choices-error-container").append($("<span>").addClass("choices-error").text("Min. Two Choices Required"));
+      pass = false
+    } else {
+      $(".choices-error").remove();
+    }
+
+    if (!hasEmail(email)) {
+      const $emailInput = $("#new-poll-email");
+
+      $emailInput.removeClass("valid-email");
+      $emailInput.addClass("invalid-email");
+      $emailInput.attr("placeholder", "Email Required*")
+
+      pass = false
+    } else {
+      if (!checkEmailFormat(email)) {
+        $("#email-error").remove();
+        const $span = $("<span>").attr("id", "email-error").text("Expected Email Format: username@mailserver.domain");
+        $("#email-container").append($span);
+
+        pass = false;
+      } else {
+        $("#email-error").remove();
+      }
+
+      const $emailInput = $("#new-poll-email");
+
+      $emailInput.removeClass("invalid-email");
+      $emailInput.addClass("valid-email");
+      $emailInput.attr("placeholder", "Email");
+    }
+
+
+    return pass;
+  };
+
   // Add a choice input field when + button is clicked
   const addChoice = function() {
     // Construct <input> within <section>
@@ -61,8 +157,8 @@ $(() => {
 
 
   // Submit user inputted title, description, choices, and email
-  $("#create-poll-button").on("click", function() {
-
+  $("#create-poll-button").on("click", function(event) {
+    // event.preventDefault();   // <-- Uncomment this and console.log statements to see values
     const title = $("#new-poll-title").val();
 
     const description = $("#new-poll-description").val();
@@ -72,6 +168,7 @@ $(() => {
     }).get();
 
     const email = $("#new-poll-email").val();
+    console.log("first pass:", email);
 
     const nameRequired = $("#name-option-checkbox").is(":checked");
 
@@ -83,29 +180,31 @@ $(() => {
       nameRequired
     };
 
-    $.ajax({
-      url: "/api/creators/create",
-      type: "POST",
-      data: newPollData,
-      success: function(dataToPassToCreateConfirmation) {
-        const title = dataToPassToCreateConfirmation.title;
-        const description = dataToPassToCreateConfirmation.description;
-        const email = dataToPassToCreateConfirmation.email;
-        const nameRequired = dataToPassToCreateConfirmation.nameRequired;
-        const pollId = dataToPassToCreateConfirmation.pollId;
+    if (checkFormInputs(title, choices, email)) {
+      $.ajax({
+        url: "/api/creators/create",
+        type: "POST",
+        data: newPollData,
+        success: function(dataToPassToCreateConfirmation) {
+          const title = dataToPassToCreateConfirmation.title;
+          const description = dataToPassToCreateConfirmation.description;
+          const email = dataToPassToCreateConfirmation.email;
+          const nameRequired = dataToPassToCreateConfirmation.nameRequired;
+          const pollId = dataToPassToCreateConfirmation.pollId;
 
-        let confirmationQueryStringURL = '/api/creators/confirmation?';
-        confirmationQueryStringURL += `title=${title}&`;
-        confirmationQueryStringURL += `description=${description}&`;
-        confirmationQueryStringURL += `email=${email}&`;
-        confirmationQueryStringURL += `nameRequired=${nameRequired}&`;
-        confirmationQueryStringURL += `pollId=${pollId}`;
+          let confirmationQueryStringURL = '/api/creators/confirmation?';
+          confirmationQueryStringURL += `title=${title}&`;
+          confirmationQueryStringURL += `description=${description}&`;
+          confirmationQueryStringURL += `email=${email}&`;
+          confirmationQueryStringURL += `nameRequired=${nameRequired}&`;
+          confirmationQueryStringURL += `pollId=${pollId}`;
 
-        window.location.href = confirmationQueryStringURL;
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    });
+          window.location.href = confirmationQueryStringURL;
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    }
   });
 });
