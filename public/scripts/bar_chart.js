@@ -8,7 +8,7 @@ const displayBarChart = function(poll) {
   }
   const pollName = poll[0].poll;
   const winner = poll[0].choice;
-  const $body = $('body');
+  const $main = $('main');
   const $barChart = $(`
     <table class="charts-css bar show-heading show-labels data-spacing-${20}" id="barchart">
       <tbody>
@@ -19,11 +19,11 @@ const displayBarChart = function(poll) {
   // display poll info
   displayPoll(pollName);
   displayWinner(winner);
-  $body.append($barChart);
+  $main.append($barChart);
   const maxPoints = findMax(poll);
 
   for (const choice of poll) {
-    $body.find("tbody").append(createRow(choice, maxPoints));
+    $main.find("tbody").append(createRow(choice, maxPoints));
     }
 };
 
@@ -41,14 +41,14 @@ const createRow = function(choice, maxPoints) {
   return $(`
   <tr>
     <th scope="row"> ${choice.choice} </th>
-    <td style="--size: calc( ${choice.points}  / ${maxPoints} )"> ${choice.points}
+    <td style="--size: calc( ${choice.points}  / ${maxPoints} ); font-family: sans-serif;"> ${choice.points}
     </td>
   </tr>`);
 };
 
 const displayWinner = function(winner) {
-  $('h2').after('<h3>And the winner is...</h3>');
-  $('h3').after(`<h2>${winner}</h2>`);
+  $('main').append('<h4>And the winner is...</h4>');
+  $('main').append(`<h1>${winner}</h1>`);
 };
 
 const displayError = function() {
@@ -56,7 +56,7 @@ const displayError = function() {
 };
 
 const displayPoll = function(poll) {
-  $('header').after(`<h2>${poll}</h2>`);
+  $('main').append(`<h2>${poll}</h2>`);
 };
 
 $('document').ready(() => {

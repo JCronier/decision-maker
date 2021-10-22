@@ -1,10 +1,10 @@
-const { mailgun } = require("../api/mailgun");
-
 /*
  * All routes for users creating polls are defined here
  * Since this file is loaded in server.js into api/creators,
  *   these routes are mounted onto /creators
  */
+
+const { mailgun } = require("../api/mailgun");
 
 module.exports = (router, db) => {
   router.get("/create", (req, res) => {
@@ -44,8 +44,6 @@ module.exports = (router, db) => {
       if (error) {
         console.log(error);
       }
-
-      console.log(body);
     });
 
     res.render("create_confirmation", req.query);

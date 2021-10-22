@@ -11,6 +11,8 @@
     animation: revealing-bars 4s linear;
     border-radius: 5%;
     height: 20px;
+    background-color: #c04701;
+    color: rgb(245, 245, 245);
   }
 }
 
@@ -19,3 +21,23 @@
   15% { transform: scaleX( 1 ); }
 }
 
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#reveal {
+  width: auto;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}

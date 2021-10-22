@@ -41,7 +41,7 @@ module.exports = (router, db) => {
 
     db.addResults(resultsObj)
       .then(result => {
-        res.json( result );
+        res.json(result);
       })
   })
 
