@@ -1,5 +1,8 @@
 # Spooky Decision Maker Project
 
+### By Alejandro Cristoffanini, Tommy Son and Jordan Cronier
+
+## &nbsp;
 Spooky Decision Maker is multi-page application designed to help you and your friends come to an agreement.
 
 A user is able to create a poll with multiple entries, hand out links to their friends for voting, and a results link is generated that contains the results of all the submissions. Voting is calculated via the [Borda Count](https://en.wikipedia.org/wiki/Borda_count) method where users submit their first choice, second choice, and so forth in order of preference in order to generate the best compromise for all users voting in the poll. 
