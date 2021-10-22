@@ -13,6 +13,7 @@
     height: 20px;
     background-color: #78a057;
     color: rgb(245, 245, 245);
+    padding-right: 1em;
   }
 }
 
@@ -42,6 +43,14 @@ h1 {
 h2 {
   font-size: 3rem;
 }
+
+// footer {
+//   position: fixed;
+//   left: 0;
+//   bottom: 0;
+//   width: 100%;
+//   text-align: center;
+// }
 
 @media only screen and (max-width: 1024px) {
   h1 {

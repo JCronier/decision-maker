@@ -1,8 +1,26 @@
+body {
+  height: 100%;
+  min-width: 455px;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
 #main-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+}
+
+#description {
+  color: indianred;
+}
+
+#link {
+  color: indianred;
 }
 
 #title-container {
@@ -60,4 +78,19 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+  text-align: center;
+}
+
+#submittor-link {
+  border: none;
+  background-color: inherit;
+  color: orange;
+  cursor: pointer;
+}
+
+#admin-link {
+  border: none;
+  background-color: inherit;
+  color: orange;
+  cursor: pointer;
 }

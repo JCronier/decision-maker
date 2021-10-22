@@ -104,6 +104,12 @@ textarea {
   width: 25%;
 }
 
+#name-option-checkbox {
+  width: 1em;
+  height: 1em;
+  margin-bottom: 0.6em;
+}
+
 #button-container {
   display: flex;
   flex-direction: column;
@@ -116,13 +122,22 @@ textarea {
   height: 2.5em;
 }
 
+// #require-name-label {
+//   display: inline-flex;
+//   align-items: center;
+// }
+
 textarea {
   resize: none;
+  outline: none;
   padding-left: 0.5em;
 }
 
 input {
   padding-left: 0.5em;
+  outline: none;
+  border-width: 0;
+  border: none;
 }
 
 footer {
