@@ -21,8 +21,32 @@
   padding-left: 0px;
 }
 
+.rank-submission h1 {
+  color: #fff;
+}
+
+.rank-submission span {
+  display: block;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  color: #fff;
+}
+
 .draggable-rank {
   background-color: orange;
+  // transition: 0.3s;
+}
+
+.draggable-rank:hover {
+  background-color: rgb(255, 196, 87);
+}
+
+.draggable-rank p {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .rank-submission label {
@@ -45,6 +69,11 @@
 #ranking-form button {
   width: 50%;
   align-self: center;
+  transition: 0.3s;
+}
+
+#ranking-form button:hover {
+  opacity: 0.8;
 }
 
 .nav-bar {
