@@ -81,6 +81,10 @@ textarea {
   width: 25%;
 }
 
+#email-error {
+  color: red;
+}
+
 #name-option-container {
   display: flex;
   flex-direction: row;
@@ -118,5 +122,21 @@ header, footer {
 }
 
 footer {
-  margin-top: 11em;
+  margin-top: 12em;
+}
+
+.invalid-title::placeholder {
+  color: red;
+}
+
+.invalid-email::placeholder {
+  color: red;
+}
+
+.invalid-choice::placeholder {
+  color: red;
+}
+
+.choices-error {
+  color: red;
 }
