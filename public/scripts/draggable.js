@@ -41,13 +41,11 @@ $(document).ready(function() {
 
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
-
-    $('h2').text(choicerows[0].title);
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameInput);
     };
 
-    $('.rank-submission').prepend(pollTitle(choicerows[0]));
+    $('body').prepend(pollTitle(choicerows[0]));
 
     for (const choice of choicerows) {
       $('#sortable').append(choicetemplate(choice));
