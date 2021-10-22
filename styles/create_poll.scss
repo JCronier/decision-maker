@@ -3,11 +3,23 @@ body {
   min-width: 455px;
 }
 
+main {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  margin-top: 100px;
+  font-size: 4rem;
+}
 
 button:focus {
   outline: none;
   box-shadow: none;
-  background: #007bff;
+}
+
+#app-name {
+  color: indianred;
 }
 
 #new-poll-form {
@@ -55,14 +67,12 @@ textarea {
 }
 
 #add-choice-button {
-  background-color: orange;
   color: white;
   width: 2.5em;
   height: 2.5em;
 }
 
 #remove-choice-button {
-  background-color: orange;
   color: white;
   width: 2.5em;
   height: 2.5em;
@@ -98,7 +108,6 @@ textarea {
 }
 
 #create-poll-button {
-  background-color: orange;
   color: white;
   height: 2.5em;
 }
@@ -112,11 +121,23 @@ input {
   padding-left: 0.5em;
 }
 
-header, footer {
-  background-color: orange;
-  text-align: center;
-}
-
 footer {
   margin-top: 11em;
+}
+
+#create-poll-heading {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
 }

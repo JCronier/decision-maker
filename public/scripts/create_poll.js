@@ -48,8 +48,6 @@ $(() => {
     event.preventDefault();
 
     removeChoice();
-
-    // $([document.documentElement, document.body]).scrollTop($("#remove-choice-button").offset().top, 2000);
   });
 
   // Event handler for when RESET button is clicked
@@ -63,25 +61,19 @@ $(() => {
 
 
   // Submit user inputted title, description, choices, and email
-  $("#create-poll-button").on("click", function(event) {
-    // event.preventDefault();   // <-- Uncomment this and console.log statements to see values
+  $("#create-poll-button").on("click", function() {
 
     const title = $("#new-poll-title").val();
-    // console.log(title);
 
     const description = $("#new-poll-description").val();
-    // console.log(description);
 
     const choices = $(".new-poll-choice").map(function() {
       return $(this).val();
     }).get();
-    // console.log(choices);
 
     const email = $("#new-poll-email").val();
-    // console.log(email);
 
     const nameRequired = $("#name-option-checkbox").is(":checked");
-    // console.log(nameRequired);
 
     const newPollData = {
       title,
@@ -90,7 +82,6 @@ $(() => {
       email,
       nameRequired
     };
-    // console.log(newPollData);
 
     $.ajax({
       url: "/api/creators/create",

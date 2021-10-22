@@ -11,11 +11,13 @@
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <!-- App CSS -->
+
+  <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/create_poll.css" type="text/css" />
 
   <!-- External JS -->
@@ -24,15 +26,18 @@
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/create_poll.js"></script>
 
-  <title>create_poll.ejs</title>
+  <title>Decision Maker | Home</title>
 </head>
 
 <body>
-  <header>HEADER</header>
+  <%- include('partials/_nav-bar') %>
 
   <br>
 
+  <h1>Welcome to the <span id="app-name">Spooky Decision Maker</span></h1>
+  <p>The app that helps you make decisions...</p>
   <main>
+    <h4 id="create-poll-heading">Create a poll below</h4>
     <form id="new-poll-form" name="new-poll-form">
       <section id="title-container">
         <input id="new-poll-title" placeholder="Title" name="title">
@@ -49,9 +54,9 @@
       </section>
 
       <section id="add-choice-container">
-        <button id="add-choice-button" type="button" class="btn">+</button>
-        <button id="reset-choices-button" type="button" class="btn"><i class="fas fa-redo"></i></button>
-        <button id="remove-choice-button" type="button" class="btn">-</button>
+        <button id="add-choice-button" type="button" class="btn btn-outline-light">+</button>
+        <button id="reset-choices-button" type="button" class="btn btn-outline-light"><i class="fas fa-redo"></i></button>
+        <button id="remove-choice-button" type="button" class="btn btn-outline-light">-</button>
       </section>
 
       <section id="email-container">
@@ -64,7 +69,7 @@
       </section>
 
       <section id="button-container">
-        <button id="create-poll-button" type="button" class="btn">Create Poll</button>
+        <button id="create-poll-button" type="button" class="btn btn-outline-light">Create Poll</button>
       </section>
     </form>
   </main>

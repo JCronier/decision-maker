@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4em;
+  justify-content: center;
 }
 
 #copy-result {
@@ -11,15 +11,15 @@
   cursor: pointer;
 }
 
-#result-link {
-  background-color: orange;
-  color: white;
-  height: 2.5em;
+#greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-header, footer {
-  background-color: orange;
-  text-align: center;
+#result-link {
+  color: white;
+  height: 2.5em;
 }
 
 footer {
@@ -29,10 +29,13 @@ footer {
   width: 100%;
 }
 
-#pollTitle {
-  color: orange;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
 }
 
-#pollId {
-  color: orange;
+#title {
+  color: indianred;
 }

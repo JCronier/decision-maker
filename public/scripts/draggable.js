@@ -42,6 +42,7 @@ $(document).ready(function() {
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
 
+    $('h2').text(choicerows[0].title);
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameInput);
     };
@@ -58,7 +59,6 @@ $(document).ready(function() {
     url: `/api/submittors/choices/${pollId}`,
     method: "GET",
     success: function(result) {
-      console.log('the result of my query is: ', result);
       if (result[0] === undefined) {
         $('#ranking-form').append(errorOut);
       }
