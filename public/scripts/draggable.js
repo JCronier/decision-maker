@@ -35,6 +35,7 @@ $(document).ready(function() {
   //a function that adds the choices, and if required the name field.
   const renderChoices = function(choicerows) {
 
+    $('h2').text(choicerows[0].title);
     if (choicerows[0].require_name) {
       $('#ranking-form').prepend(nameInput);
     }

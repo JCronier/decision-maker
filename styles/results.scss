@@ -11,7 +11,7 @@
     animation: revealing-bars 4s linear;
     border-radius: 5%;
     height: 20px;
-    background-color: #c04701;
+    background-color: #78a057;
     color: rgb(245, 245, 245);
   }
 }
@@ -36,8 +36,21 @@ main {
 
 h1 {
   font-size: 5rem;
+  color: indianred;
 }
 
 h2 {
   font-size: 3rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
 }

@@ -99,7 +99,7 @@ exports.populatePollAndChoices = populatePollAndChoices;
 // Tommy - called when user clicks submitter link on create_confirmation.ejs
 const getChoices = function(values, getResponse) {
   const queryString = `
-  SELECT choices.name, choices.id, polls.require_name
+  SELECT choices.name, choices.id, polls.require_name, polls.title as title
   FROM choices
   JOIN polls ON choices.poll_id = polls.id
   WHERE polls.id = $1;

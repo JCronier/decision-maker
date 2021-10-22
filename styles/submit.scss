@@ -1,3 +1,7 @@
+.rank-submission {
+  margin-top: 100px;
+}
+
 .rank-submission .draggable-rank{
   width: 200px;
   height: 50px;
@@ -35,15 +39,32 @@
   flex-direction: column;
   align-content: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 #ranking-form button {
   width: 50%;
-  background-color: whitesmoke;
   align-self: center;
 }
 
-//jank-fix
 .nav-bar {
   padding-left: 1em;
+}
+
+h2 {
+  margin-top: 100px;
+  color: indianred;
+  font-size: 3rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
 }

@@ -2,6 +2,7 @@ $orange: #9b4c06;
 $black: #000000;
 $form-color: #9fa894;
 $font-color: #f5dbc6;
+$border-radius: 5px;
 
 @font-face {
   font-family: 'spooky-sphere';
@@ -45,8 +46,10 @@ html {
 
 input {
   background-color: $form-color;
+  border-radius: $border-radius;
 }
 
 textarea {
   background-color: $form-color;
+  border-radius: $border-radius;
 }

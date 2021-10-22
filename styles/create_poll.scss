@@ -8,9 +8,18 @@ main {
   height: 100%;
 }
 
+h1 {
+  margin-top: 100px;
+  font-size: 4rem;
+}
+
 button:focus {
   outline: none;
   box-shadow: none;
+}
+
+#app-name {
+  color: indianred;
 }
 
 #new-poll-form {
@@ -119,4 +128,16 @@ footer {
 #create-poll-heading {
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
 }

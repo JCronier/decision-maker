@@ -36,12 +36,8 @@
   <main>
     <section id="admin-hub">
       <section id="greeting">
-        <h2>Hi Administrator for Poll<span id="pollId">
-            <%= pollId %>
-          </span>:<span id="pollTitle">
-            <%= pollTitle %>
-          </span>
-        </h2>
+        <h1 id="title"><%= pollTitle %></h1>
+        <h2>Your results are ready to be viewed</h2>
       </section>
 
       <br>
@@ -49,7 +45,7 @@
 
       <section id="result-container">
         <div>
-          <button id="result-link" type="button" class="btn">Go to Current Results</button>
+          <button id="result-link" type="button" class="btn btn-outline-light">Go to Current Results</button>
           <button id="copy-result" class="btn"><i class="far fa-clipboard"></i></button>
         </div>
       </section>
