@@ -1,19 +1,27 @@
-$orange: #612f04;
+$orange: #9b4c06;
 $black: #000000;
+$form-color: #9fa894;
+$font-color: #f5dbc6;
+
+@font-face {
+  font-family: 'spooky-sphere';
+  src: url("../fonts/spooky-sphere.otf") format("opentype");
+}
 
 body,
 html {
   margin: 0;
+  height: 100%;
+  font-family: 'spooky-sphere', sans-serif;
+  color: $font-color;
 }
 
 html {
   box-sizing: border-box;
   body {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
     background: linear-gradient(-45deg, $black, $orange, $black, $orange);
     animation: gradient 45s ease infinite;
     background-size: 400% 400%;
@@ -34,4 +42,12 @@ html {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+input {
+  background-color: $form-color;
+}
+
+textarea {
+  background-color: $form-color;
 }

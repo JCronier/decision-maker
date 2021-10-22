@@ -1,34 +1,39 @@
+// bar chart
 const displayBarChart = function(poll) {
+
+  // no results
   if (!poll || poll.length === 0) {
     displayError();
     return;
   }
-    const $body = $('body');
-    const $barChart = $(`
-        <table class="charts-css bar show-heading show-labels data-spacing-${20}" id="barchart">
-          <tbody>
+  const pollName = poll[0].poll;
+  const winner = poll[0].choice;
+  const $body = $('body');
+  const $barChart = $(`
+    <table class="charts-css bar show-heading show-labels data-spacing-${20}" id="barchart">
+      <tbody>
+      </tbody>
+    </table>`
+    );
 
-          </tbody>
-      </table>`);
+  // display poll info
+  displayPoll(pollName);
+  displayWinner(winner);
+  $body.append($barChart);
+  const maxPoints = findMax(poll);
 
-      displayPoll(poll[0].poll);
-
-      displayWinner(poll[0].choice);
-
-      $body.append($barChart);
-      const maxPoints = findMax(poll);
-
-      for (const choice of poll) {
-        $body.find("tbody").append(createRow(choice, maxPoints));
-      }
+  for (const choice of poll) {
+    $body.find("tbody").append(createRow(choice, maxPoints));
+    }
 };
 
+// chart x-axis
 const findMax = function(poll) {
   let pointsArr = []
   poll.forEach(choice => {
     pointsArr.push(Number(choice.points));
   });
-  const rounded = Math.ceil(Math.max(...pointsArr) / 10) * 10;
+  const rounded = Math.ceil(Math.max(...pointsArr) / 5) * 5;
   return rounded;
 }
 
@@ -55,6 +60,8 @@ const displayPoll = function(poll) {
 };
 
 $('document').ready(() => {
+
+  // reveal button
   $('#reveal').on('click', () => {
     const $button = $('#reveal');
     $.get(window.location.href, {reveal: true})

@@ -11,7 +11,6 @@ main {
 button:focus {
   outline: none;
   box-shadow: none;
-  background: #007bff;
 }
 
 #new-poll-form {
@@ -59,14 +58,12 @@ textarea {
 }
 
 #add-choice-button {
-  background-color: orange;
   color: white;
   width: 2.5em;
   height: 2.5em;
 }
 
 #remove-choice-button {
-  background-color: orange;
   color: white;
   width: 2.5em;
   height: 2.5em;
@@ -102,7 +99,6 @@ textarea {
 }
 
 #create-poll-button {
-  background-color: orange;
   color: white;
   height: 2.5em;
 }
@@ -118,4 +114,9 @@ input {
 
 footer {
   margin-top: 11em;
+}
+
+#create-poll-heading {
+  display: flex;
+  justify-content: center;
 }
